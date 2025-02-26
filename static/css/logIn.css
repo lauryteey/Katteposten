@@ -1,0 +1,90 @@
+/* Sign up button styles */
+.signup-redirect {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#signup-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#signup-btn:hover {
+    background-color: var(--rose-quartz);
+}
+
+/* Login page body styles */
+:root {
+
+    --light-pink: #FFB6C1;
+    --light-blue: #1b9ce2;
+    --rose-quartz: #F7CAC9;
+    --hvit: #ffff;
+    --blue-light:#abc4d3;
+    --light-gray:#f2f2f2;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--hvit); /* Adjust the color as per your design */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    background: var(--hvit);
+    padding: 50px;
+    border-radius: 10px;
+    text-align: center;
+    width: 500px;
+}
+
+.login-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.login-container button {
+    background-color: var(--light-blue);
+    color: var(--hvit);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.login-container button:hover {
+    background-color: var(--light-pink);
+}
+
+.signup-link {
+    display: block;
+    margin-top: 20px;
+    color: var(--light-blue);
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    color: var(--light-pink);
+    text-decoration: underline;
+}
