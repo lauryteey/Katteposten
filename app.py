@@ -1,4 +1,5 @@
-from flask import Flask, jsonify, render_template, request, session
+import os, json
+from flask import Flask, jsonify, render_template, request, session, request
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -6,9 +7,13 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__, template_folder="./templates")
 app.secret_key = 'Hei, secret key'  # En tilfeldig nøkkel som brukes for å kryptere sessions (brukerdata som lagres midlertidig).
 
+#for artikkel i artikkler
+ARTICLES_DIR = "articles"
+
+
 # Kobler til en global MySQL-database
 conn = mysql.connector.connect(
-    host="10.2.4.56",         # Databasens adresse (lokal maskin (%))
+    host="10.0.0.19",         # Databasens adresse (lokal maskin (%))
     user="katteposten_admin",     # Brukernavnet til databasen.
     password="123",           # Passordet til databasen.
     database="katteposten"       # Navnet på databasen som brukes.
@@ -16,6 +21,7 @@ conn = mysql.connector.connect(
 
 # Oppretter en global cursor for å kjøre SQL-spørringer
 cursor = conn.cursor(dictionary=True)  # Konfigurerer til å returnere resultater som dictionaries keys (nøkkel-verdi-par).
+
 
 # Rute for innlogging
 @app.route('/login', methods=['POST'])
@@ -100,10 +106,68 @@ def create_user():
         return jsonify({"error": "Det oppsto en uventet feil"}), 500
 
 
+
+def list_articles(category):
+    """Return a list of article previews for a given category."""
+    category_dir = os.path.join(ARTICLES_DIR, category)
+    articles = []
+    if os.path.exists(category_dir):
+        for filename in os.listdir(category_dir):
+            if filename.endswith(".json"):
+                filepath = os.path.join(category_dir, filename)
+                with open(filepath, "r", encoding="utf-8") as f:
+                    article = json.load(f)
+                    preview = {
+                        "id": article.get("id"),
+                        "title": article.get("title"),
+                        "date_published": article.get("date_published"),
+                        "excerpt": article.get("content", "")[:150] + ("..." if len(article.get("content", "")) > 150 else "")
+                    }
+                    articles.append(preview)
+    return articles
+
+
+
+def fetch_article(category, article_id):
+    """Retrieve a single article based on category and article id."""
+    category_dir = os.path.join(ARTICLES_DIR, category)
+    if os.path.exists(category_dir):
+        for filename in os.listdir(category_dir):
+            if filename.endswith(".json"):
+                filepath = os.path.join(category_dir, filename)
+                with open(filepath, "r", encoding="utf-8") as f:
+                    article = json.load(f)
+                    if article.get("id") == article_id:
+                        return article
+    return None
+
+
+
+# Route to list articles as JSON data
+@app.route("/get_articles/<category>", methods=["GET"])
+def get_articles(category):
+    articles = list_articles(category)
+    return jsonify(articles)
+
+
+
 @app.route('/')
 def home():
-    return render_template('forside.html')
+    articles = list_articles("krim")
+    return render_template('forside.html', articles=articles)
 
+
+# Route for article detail using a clean URL.
+@app.route('/article/<category>/<article_id>')
+def article(category, article_id):
+    article_data = fetch_article(category, article_id)
+    if not article_data:
+        return "Article not found", 404
+    # If your template is in a subfolder 'nyheter', include that in the path.
+    return render_template("nyheter/forsideNyhet.html", article=article_data)
+
+
+# log in og sig in routes
 @app.route('/log_in')
 def log_in():
     return render_template('login.html')
@@ -111,6 +175,8 @@ def log_in():
 @app.route('/sign_up')
 def sign_up():
     return render_template('register.html')  
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

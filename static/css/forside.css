@@ -117,3 +117,57 @@ color: white; /* Make the icon white */
 main {
   padding: 1rem;
 }
+
+/*css for artikkelen*/
+.featured-article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  padding: 20px;
+  background: #fff;
+}
+
+.featured-article img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.featured-content {
+  text-align: center;
+}
+
+.featured-content h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.featured-content .publish-date {
+  font-style: italic;
+  color: #888;
+  margin-bottom: 15px;
+}
+
+.featured-content .excerpt {
+  font-size: 1.1em;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.keep-reading {
+  text-decoration: none;
+  font-size: 0.9em;
+  color: #0066cc;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.3s;
+}
+
+.keep-reading:hover {
+  border-bottom: 1px solid #0066cc;
+}
+

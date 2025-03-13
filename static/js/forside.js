@@ -1,21 +1,24 @@
-const openMenu = document.getElementById('open-menu');
-const closeMenu = document.getElementById('close-menu');
-const sideMenu = document.getElementById('side-menu');
-const overlay = document.getElementById('overlay');
 
-// Open side menu
-openMenu.addEventListener('click', () => {
-  sideMenu.classList.add('active');
-  overlay.classList.add('active');
-});
-
-// Close side menu bye bye
-closeMenu.addEventListener('click', () => {
-  sideMenu.classList.remove('active');
-  overlay.classList.remove('active');
-});
-
-overlay.addEventListener('click', () => {
-  sideMenu.classList.remove('active');
-  overlay.classList.remove('active');
-});
+// funksjon for å laste artikler fra kategorier 
+async function loadArticles(category) {
+  try {
+    const response = await fetch(`/get_articles/${category}`);
+    const articles = await response.json();
+    const container = document.getElementById("articles-container");
+    container.innerHTML = "";
+    articles.forEach(article => {
+      // Create a preview for each article
+      const articleDiv = document.createElement("div");
+      articleDiv.innerHTML = `
+        <h2><a href="/article/${category}/${article.id}">${article.title}</a></h2>
+        <p>${article.excerpt}</p>
+        <small>Published on: ${article.date_published}</small>
+      `;
+      container.appendChild(articleDiv);
+    });
+  } catch (error) {
+    console.error("Error loading articles:", error);
+  }
+}
+// Load articles from a default category
+loadArticles("krim");
