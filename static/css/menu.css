@@ -1,0 +1,114 @@
+:root{
+    --headerOgFooter: #333;
+    --tittel: #fff;
+  
+  }
+  
+  /* Basic reset */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: sans-serif;
+  }
+  
+  /* Header layout */
+  header {
+    display: flex;               /* Enable flexbox */
+    align-items: center;         /* Vertically center items */
+    justify-content: space-between; /* Spread out left & right */
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+  }
+  
+  /* Hamburger button on the left */
+  .open-menu {
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  /* Site title in the middle (flex will place it between open-menu and header-login) */
+  header h1 {
+    justify-content: left;
+  }
+  
+  /* Login icon on the right */
+  .header-login {
+  color: white; /* Make the icon white */
+    text-decoration: none; 
+    font-size:1.5rem;    /* Adjust as needed */
+    cursor: pointer;
+    align-items: center;
+  
+  }
+  
+  
+  .header-login svg {
+    margin-right: 0px;
+  }
+  
+  
+  /* The slide-out side menu  */
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #fff;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    overflow-y: auto;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+    padding: 1rem;
+  }
+  
+  .side-menu.active {
+    transform: translateX(0);
+  }
+  
+  .close-menu {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+    float: right;
+  }
+  
+  .side-menu ul {
+    list-style: none;
+    margin-top: 2rem;
+  }
+  
+  .side-menu li {
+    margin-bottom: 1rem;
+  }
+  
+  .side-menu li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  /* Overlay */
+  .overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    z-index: 998;
+  }
+  
+  .overlay.active {
+    display: block;
+  }

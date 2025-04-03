@@ -1,0 +1,14 @@
+{
+  "articles": [
+    {
+      "id": 1,
+      "category": "krim",
+      "title": "Ranet midt på dagen",
+      "Redaktør": "Jonnathan Cats",
+      "excerpt": "Ble ranet av naboet på sol lys",
+      "content_file": "tekster/forsideNyhet.txt",
+      "date_published": "2025-03-26"
+    }
+  ]
+}
+

@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/forside.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
   <script src="{{ url_for('static', filename='js/forside.js') }}"></script>
   <script src="{{ url_for('static', filename='js/menuScript.js') }}"></script>
   <title>Katteposten - Hjem</title>
@@ -55,43 +56,12 @@
     <h1>Velkommen til katteposten!</h1>
 
     <h2>Siste nyheter</h2>
-
-    <div id="articles-container">
-      {% for article in articles %}
-      {% if loop.first %}
-
-      <div class="featured-article">
-        <!-- Display an image if available (add an "image_url" key to your JSON) -->
-        <img src="{{ url_for('static', filename=article.image_url) }}" alt="{{ article.title }}">
-
-        <div class="featured-content">
-          <h2>{{ article.title }}</h2>
-          <p class="publish-date">{{ article.date_published }}</p>
-          <p class="excerpt">{{ article.excerpt }}</p>
-          <a href="{{ url_for('article', category='krim', article_id=article.id) }}" class="keep-reading">Keep reading...</a>
-        </div>
-
+    <div id="articles-container"></div>
+    <main>
+      <div id="article-content">
+        <!-- The content loaded by JavaScript will appear here -->
       </div>
-      {% else %}
-
-      <div class="article-preview">
-
-        <h2>
-          <a href="{{ url_for('article', category='krim', article_id=article.id) }}">
-            {{ article.title }}
-          </a>
-        </h2>
-
-        <p>{{ article.excerpt }}</p>
-        <small>Published on: {{ article.date_published }}</small>
-
-
-      </div>
-
-      {% endif %}
-      {% endfor %}
-
-    </div>
+    </main>
 
 
   </main>
