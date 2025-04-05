@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify, session, render_template
 import os
 import json
 import mysql.connector
+import markdown
 from werkzeug.security import generate_password_hash, check_password_hash
 from config import db_config
 
@@ -67,7 +68,6 @@ def create_user():
 # Article Helper Functions
 
 def fetch_article_metadata(category, article_id):
-    # Load a single article's metadata from the central metadata file
     metadata_file = os.path.join(ARTICLES_DIR, "metadata", "metadata.json")
     if not os.path.exists(metadata_file):
         return None
@@ -76,10 +76,15 @@ def fetch_article_metadata(category, article_id):
         data = json.load(f)
 
     for article in data.get("articles", []):
-        # Convert both to int for reliable comparison
-        if int(article.get("id")) == int(article_id) and article.get("category") == category:
+        try:
+            current_id = int(article.get("id"))
+        except ValueError:
+            # Skip this entry if the id is not a number
+            continue
+        if current_id == int(article_id) and article.get("category") == category:
             return article
     return None
+
 
 def list_articles(category):
     # Return a list of articles filtered by category from the metadata file.
@@ -100,21 +105,24 @@ def get_article_content(category, article_id):
     if not article:
         return jsonify({"error": "Article not found"}), 404
 
-    # Build the full path using ARTICLES_DIR
-    content_path = os.path.join(ARTICLES_DIR, article["content_file"])
     try:
-        with open(content_path, "r", encoding="utf-8") as f:
-            content = f.read()
+        # Open the Markdown file instead of a plain text file
+        with open(article["content_file"], "r", encoding="utf-8") as f:
+            md_content = f.read()
     except FileNotFoundError:
         return jsonify({"error": "Content file not found"}), 404
 
+    # Convert Markdown to HTML
+    html_content = markdown.markdown(md_content)
+    
     return jsonify({
         "id": article["id"],
         "title": article["title"],
-        "content": content,
+        "content": html_content,
         "date_published": article["date_published"],
         "category": article.get("category", category)
     })
+
 
 @app.route('/article/<category>/<article_id>')
 def show_article(category, article_id):
@@ -122,11 +130,13 @@ def show_article(category, article_id):
     if not article:
         return "Artikkel ikke funnet", 404
 
+    # Construct the full file path
     content_path = os.path.join(ARTICLES_DIR, article["content_file"])
     print("Loading content from:", content_path)  # Debug print
+
     try:
         with open(content_path, "r", encoding="utf-8") as f:
-            content = f.read()
+            md_content = f.read()
     except FileNotFoundError as fnf_error:
         print("Content file not found:", fnf_error)
         return "Innhold ikke funnet", 404
@@ -134,13 +144,16 @@ def show_article(category, article_id):
         print("Error loading content:", e)
         return "Noe gikk galt med å laste artikkelen", 500
 
-    article["content"] = content
+    # Convert the Markdown content to HTML
+    article["content"] = markdown.markdown(md_content)
+
     try:
-        # Note: The template is in the nyheter subfolder
         return render_template("nyheter/forsideNyhet.html", article=article)
     except Exception as e:
         print("Error rendering template:", e)
         return "Feil med å vise artikkelen", 500
+
+
 
 @app.route('/get_articles/<category>', methods=['GET'])
 def get_articles(category):
