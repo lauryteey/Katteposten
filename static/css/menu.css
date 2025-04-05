@@ -86,17 +86,18 @@
   
   .side-menu ul {
     list-style: none;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
   }
   
   .side-menu li {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
   
   .side-menu li a {
     text-decoration: none;
     color: #333;
-    font-weight: bold;
+    font-size: 1.2rem;
+    
   }
   
   /* Overlay */

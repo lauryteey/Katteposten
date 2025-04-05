@@ -1,10 +1,8 @@
 # Ranet midt på dagen!
-
 ## Ble ranet av naboet på sol lys...
-
 _Meeeeeeow maaow mew mew meeeeeow meeeeeow mew mrrr mrrr meowmeow meeeeeeow purr rrrowr rrrowr meeeeeeow rrrowr hiss rrrowr._
-
 ![Voldelig hendelse](../../static/video_og_images/image/introBilde.png "Voldelig hendelse")
+
 
 **Av Meowthan Meowsrtad Cats**
 _Redaktør av Katteposten_

@@ -6,6 +6,7 @@
   <title>{{ article.title }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/viseNyheter.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
   <script src="{{ url_for('static', filename='js/viseNyheter.js') }}"></script>
   <script src="{{ url_for('static', filename='js/menuScript.js') }}"></script>
 </head>
@@ -53,12 +54,46 @@
   <main>
     <div id="article-content">
       {{ article.content | safe }}
-      <!-- The content loaded by JavaScript will appear here -->
+      <!-- The content loaded by JavaScript will appear here YAY -->
     </div>
   </main>
 
-  <script src="{{ url_for('static', filename='js/viseNyheter.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/menuScript.js') }}"></script>
+  <footer class="site-footer">
+    <div class="footer-wrapper">
+      
+      <div class="footer-column">
+        <ul>
+          <li><a href="#">Ansv. redaktør og adm. direktør: Meowthan Cats </a></li>
+          <li><a href="#">Nyhetsredaktør: Meowthan Cats</a></li>
+          <li><a href="#">Utviklingsredaktør: Mewothan Cats</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-column">
+        <ul>
+          <li><a href="#">Åpenhet om Katteposten</a></li>
+          <li><a href="#">Logg over rettelser Katteposten har gjort</a></li>
+          <li><a href="#">VGs trafikkregler</a></li>
+        </ul>
+      </div>
+
+      
+      <div class="footer-column">
+        <ul>
+          <li><a href="#">Les dagens e-avis her</a></li>
+          <li><a href="#">Kontakt Katteposten</a></li>
+          <li><a href="#">Annonseinfo</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom row (e.g., copyright) -->
+    <div class="footer-bottom">
+      <p>© 2025 Katteposten | Brukevilkår | Personvernerklæring og informasjonskapsler</p>
+    </div>
+  </footer>
+
 
 </body>
 

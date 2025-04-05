@@ -1,0 +1,52 @@
+/* Footer Container */
+.site-footer {
+    background-color: #333; /* Dark background */
+    color: #fff;           /* Light text color */
+    font-family: Arial, sans-serif;
+    padding: 2.9rem 2.9rem;
+    margin-top: 2rem;      /* Space above the footer */
+  }
+  
+  /* Wrapper for columns */
+  .footer-wrapper {
+    display: flex;
+    flex-wrap: wrap;              /* Wrap if not enough horizontal space */
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  
+  /* Each column */
+  .footer-column {
+    flex: 1 1 200px; /* Adjust to your liking */
+    margin: 0 1rem;
+    min-width: 150px;
+  }
+  
+  
+  /* Remove default list styling */
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* List items */
+  .footer-column li {
+    margin-bottom: 0.9rem;
+  }
+  
+  /* Footer links */
+  .footer-column a {
+    color: #ccc;
+    text-decoration: none;
+  }
+
+  /* Bottom row styling */
+  .footer-bottom {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    color: #fff;
+  }
+  
