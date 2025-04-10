@@ -166,7 +166,7 @@ def home():
     articles = list_articles("krim")
     return render_template('main.html', articles=articles)
 
-@app.route('/log_in')
+@app.route('/log_in', methods=['GET'] )
 def log_in():
     return render_template('login.html')
 

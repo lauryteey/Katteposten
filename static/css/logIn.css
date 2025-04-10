@@ -15,76 +15,97 @@
 }
 
 #signup-btn:hover {
-    background-color: var(--rose-quartz);
+    background-color: var(--oxford-blue);
+    transition: 0.5s;
 }
 
 /* Login page body styles */
 :root {
 
-    --light-pink: #FFB6C1;
-    --light-blue: #1b9ce2;
-    --rose-quartz: #F7CAC9;
+    --oxford-blue: #002147;
     --hvit: #ffff;
-    --blue-light:#abc4d3;
-    --light-gray:#f2f2f2;
+    --blue-light: #abc4d3;
+    --light-gray: #f2f2f2;
+    --black-black: #010203;
+    --blub-blub: #0b83ce;
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: var(--hvit); /* Adjust the color as per your design */
+    background: var(--light-gray);
+    /* Adjust the color as per your design */
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    text-align: center;
 }
 
-.login-container {
-    background: var(--hvit);
-    padding: 50px;
-    border-radius: 10px;
-    text-align: center;
-    width: 500px;
+.logo{
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 140px;
+    margin-bottom: 45px;
+    
 }
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Allow elements to fill the width */
+    gap: 15px;
+}
+
+
+/* Make inputs full-width inside the form */
+#login-form input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+/* Style the submit button */
+#login-form button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--blub-blub);
+    color: var(--hvit);
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#login-form button:hover {
+    background-color: var(--oxford-blue);
+}
+
+
+/* Overall container styling */
+.login-container {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 12px;
+    width: 400px;
+    box-shadow: 2px 5px 19px rgba(0, 0, 0, 0.2);
+    text-align: center; /* This centers the title and text */
+}
+
 
 .login-container h1 {
     font-size: 1.8rem;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: black;
 }
 
-.login-container input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-}
 
-.login-container button {
-    background-color: var(--light-blue);
-    color: var(--hvit);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-}
 
-.login-container button:hover {
-    background-color: var(--light-pink);
-}
-
-.signup-link {
-    display: block;
-    margin-top: 20px;
-    color: var(--light-blue);
-    text-decoration: none;
-}
-
-.signup-link:hover {
-    color: var(--light-pink);
-    text-decoration: underline;
-}
