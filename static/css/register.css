@@ -3,66 +3,108 @@
     --light-blue: #1b9ce2;
     --rose-quartz: #F7CAC9;
     --hvit: #ffff;
-    --blue-light:#abc4d3;
-    --light-gray:#f2f2f2;
+    --blue-light: #abc4d3;
+    --light-gray: #f2f2f2;
+    --oxford-blue: #002147;  /* Added to match login page hover effect */
+    --blub-blub: #0b83ce;    /* Also available if needed */
 }
 
+/* Overall page styling */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: var(--hvit); /* Matches the log-in background */
+    background: var(--light-gray);  /* Matches login background */
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
 }
 
+.logo {
+    display: block;
+    width: 120px;
+    margin: 0 auto 40px auto; /* center the logo */
+}
+
+/* Signup container styling */
 .signup-container {
-    background: var(--hvit); /* Same white container background */
-    padding: 50px;
-    border-radius: 10px; /* Same rounded corners */
-    text-align: center;
-    width: 500px; /* Matches the log-in container width */
+    background: var(--hvit);
+    padding: 70px 80px; /* Increased padding to match login container */
+    border-radius: 12px;
+    width: 500px;       /* Same width as login container */
+    box-shadow: 2px 5px 19px rgba(0, 0, 0, 0.2);
+    text-align: left;   /* Default text alignment for form content */
 }
 
+/* Centered heading */
 .signup-container h2 {
-    font-size: 1.8rem; /* Matches the heading size of the log-in page */
-    margin-bottom: 20px;
-    color: black; /* Same pink color for headings */
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: black;
+    text-align: center;
 }
 
-.signup-container input {
+/* Form layout */
+.signup-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+}
+
+/* Left-aligned labels */
+.signup-container form label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    text-align: left;
+    color: #333;
+}
+
+/* Inputs matching login style */
+.signup-container form input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem; /* Matches the log-in input fields */
-}
-
-.signup-container button {
-    background-color: var(--light-blue); /* Matches log-in button color */
-    color: var(--hvit); /* White text on the button */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
-.signup-container button:hover {
-    background-color:black; /* Hover effect matches log-in button */
-}
-
-.signup-link {
+/* Signup button with centered layout */
+.signup-container form button {
     display: block;
+    margin: 20px auto 0 auto;  /* Centers button horizontally */
+    padding: 12px 40px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--light-blue);
+    color: var(--hvit);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.signup-container form button:hover {
+    background-color: var(--oxford-blue);
+}
+
+/* Optional: A link for users who already have an account */
+.signup-link {
     margin-top: 20px;
-    color: var(--light-blue); /* Matches the log-in sign-up link color */
+    text-align: center;
+}
+
+.signup-link a {
+    font-size: 14px;
+    color: var(--light-blue);
     text-decoration: none;
 }
 
-.signup-link:hover {
-    color: black; /* Matches hover effect for links on log-in page */
+.signup-link a:hover {
+    color: var(--oxford-blue);
     text-decoration: underline;
 }

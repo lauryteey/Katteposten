@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>{{ article.title }}</title>
+  <title>Katte nyheter</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/viseNyheter.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
@@ -19,8 +19,10 @@
       &#9776; <!-- hamburger icon -->
     </button>
 
-    <!-- Site title in the middle (for example) -->
-    <h1>Katteposten</h1>
+    <!-- Site title in the middle -->
+    <div class="header-logo">
+      <img src="../../static/svg icons/katteposten_white.svg" alt="Katteposten Logo">
+    </div>
 
     <!-- Login icon on the right -->
     <!-- Use an <a> tag if you want to link to a login page -->

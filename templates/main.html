@@ -10,7 +10,6 @@
   <script src="{{ url_for('static', filename='js/forside.js') }}"></script>
   <script src="{{ url_for('static', filename='js/menuScript.js') }}"></script>
   <title>Katteposten - Hjem</title>
-
 </head>
 
 <body>
@@ -21,8 +20,10 @@
       &#9776; <!-- hamburger icon -->
     </button>
 
-    <!-- Site title in the middle (for example) -->
-    <h1>Katteposten</h1>
+    <!-- Site title in the middle-->
+    <div class="header-logo">
+      <img src="../static/svg icons/katteposten_white.svg"  alt="Katteposten Logo">
+    </div>
 
     <!-- Login icon on the right -->
     <!-- Use an <a> tag if you want to link to a login page -->
@@ -41,6 +42,11 @@
     <button class="close-menu" id="close-menu" aria-label="Close Menu">
       &times; <!-- close icon -->
     </button>
+
+    <div class="menu-logo">
+      <img src="../static/svg icons/katteposten.svg"  alt="Katteposten Logo">
+    </div>
+
     <ul>
       <li><a href="#a">Siste nyheter</a></li>
       <li><a href="#a">kattens livsstil</a></li>
@@ -74,7 +80,7 @@
         <ul>
           <li><a href="#">Ansv. redaktør og adm. direktør: Meowthan Cats </a></li>
           <li><a href="#">Nyhetsredaktør: Meowthan Cats</a></li>
-          <li><a href="#">Utviklingsredaktør: Mewothan Cats</a></li>
+          <li><a href="#">Utviklingsredaktør: Meowthan Cats</a></li>
         </ul>
       </div>
 

@@ -32,7 +32,7 @@ def login():
 
     if user and check_password_hash(user['passord'], passord):
         session['brukerID'] = user['brukerID']
-        return jsonify({"message": "Klarte å logge inn YAY!", "redirect": "/forside"}), 200
+        return jsonify({"message": "Klarte å logge inn YAY!", "redirect": "/"}), 200
     elif user:
         return jsonify({"error": "Feil passord."}), 401
     else:

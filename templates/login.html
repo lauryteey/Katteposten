@@ -11,7 +11,9 @@
 <body>
   <div class="login-container">
     <img class="logo" src="../static/svg icons/katteposten.svg" alt="">
+    
     <h1>Logg inn</h1>
+
     <form id="login-form">
       <label for="email">E-post:</label>
       <input type="email" id="email" name="email" required>
@@ -20,18 +22,20 @@
       <input type="password" id="password" name="password" required>
 
       <button type="submit">Logg inn</button>
+
     </form>
+
     <div id="login-message"></div>
 
     <!-- Sign-up knapp -->
     <div class="signup-redirect">
-      <p>Har du ikke en konto?</p>
-      <button id="signup-btn">Registrer deg</button>
+      <p>Har du ikke en konto? <button id="signup-btn">Registrer deg</button></p>
     </div>
+    
   </div>
 
   <script src="../static/js/logIn.js"></script>
-  
+
 </body>
 
 </html>

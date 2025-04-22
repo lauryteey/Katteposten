@@ -1,27 +1,4 @@
-/* Sign up button styles */
-.signup-redirect {
-    margin-top: 20px;
-    text-align: center;
-}
-
-#signup-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 14px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-#signup-btn:hover {
-    background-color: var(--oxford-blue);
-    transition: 0.5s;
-}
-
-/* Login page body styles */
 :root {
-
     --oxford-blue: #002147;
     --hvit: #ffff;
     --blue-light: #abc4d3;
@@ -30,82 +7,116 @@
     --blub-blub: #0b83ce;
 }
 
+/* Overall page styles */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     background: var(--light-gray);
-    /* Adjust the color as per your design */
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    text-align: center;
 }
 
-.logo{
+/* Container for everything */
+.login-container {
+    background: white;
+    border-radius: 12px;
+    width: 400px;
+    padding: 70px 80px;
+    box-shadow: 2px 5px 19px rgba(0, 0, 0, 0.2);
+    /* We want the default text left-aligned inside, 
+       but we'll override headings if we want them centered. */
+    text-align: left;
+}
+
+/* Center only the heading text */
+.login-container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: black;
+    text-align: center; 
+}
+
+/* Katteposten logo */
+.logo {
+    display: block;
     width: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 140px;
-    margin-bottom: 45px;
-    
+    margin: 0 auto 40px auto; /* center the logo */
 }
 
+/* The form itself: vertical stack, full width */
 #login-form {
     display: flex;
     flex-direction: column;
-    align-items: stretch; /* Allow elements to fill the width */
-    gap: 15px;
+    /* Make form items stretch horizontally 
+       so inputs can be 100% width */
+    align-items: stretch;
+    gap: 10px;
 }
 
+/* Left-align labels, keep them above inputs */
+#login-form label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: left; /* explicitly left-align */
+    margin-bottom: 3px;
+}
 
-/* Make inputs full-width inside the form */
+/* Inputs are full width */
 #login-form input {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
-    border-radius: 8px;
     border: 1px solid #ccc;
-    margin-bottom: 10px;
+    border-radius: 8px;
 }
 
-/* Style the submit button */
+/* Center the "Logg inn" button by giving it a fixed width or horizontal padding,
+   then margin: 0 auto; to horizontally center it */
 #login-form button {
-    width: 100%;
-    padding: 15px;
+    display: block;
+    margin: 0 auto;           /* centers horizontally */
+    padding: 12px 40px;       /* wide but not entire container */
     font-size: 1rem;
     border: none;
     border-radius: 8px;
     background-color: var(--blub-blub);
     color: var(--hvit);
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #login-form button:hover {
     background-color: var(--oxford-blue);
 }
 
-
-/* Overall container styling */
-.login-container {
-    background: white;
-    padding: 60px 40px;
-    border-radius: 12px;
-    width: 400px;
-    box-shadow: 2px 5px 19px rgba(0, 0, 0, 0.2);
-    text-align: center; /* This centers the title and text */
+/* Signup section at bottom, centered text */
+.signup-redirect{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+#signup-btn {
+    background: none;             /* Remove background color */
+    border: none;                 /* Remove border */
+    padding: 0;                   /* Remove extra padding */
+    margin: 0;                    /* Remove extra margin */
+    font-size: 14px;              /* Set your font size */
+    color: var(--blub-blub);               /* Set your link color */
+    cursor: pointer;              /* Pointer cursor on hover */
+    align-items: center;
+    padding-top: 20px;
+    
+  }
 
-.login-container h1 {
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-    color: black;
+#signup-btn:hover {
+    text-decoration: underline;
+    transition: color 0.3s ease;
 }
-
-
 

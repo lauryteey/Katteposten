@@ -33,6 +33,18 @@ header {
   padding: 1rem;
 }
 
+
+
+/* Style the logo image */
+.header-logo img {
+  height: 60px;
+  /* Adjust height as needed */
+  width: auto;
+  /* Keep the aspect ratio */
+}
+
+
+
 /* Hamburger button on the left */
 .open-menu {
   font-size: 1.5rem;
