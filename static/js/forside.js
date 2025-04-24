@@ -12,7 +12,7 @@ async function loadArticles(category) {
       const articleDiv = document.createElement("div");
       articleDiv.className = "articlePreview"
       articleDiv.innerHTML = `
-        <img src="" alt="" >
+        <img src="${article.previewBilde}" alt="Preview image for ${article.title}">
         <h2><a class="articlePreviewTittel" href="/article/${article.category}/${article.id}">${article.title} </a></h2>
         <p>${article.excerpt}</p>
       `;

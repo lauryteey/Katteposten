@@ -7,7 +7,7 @@
       "Redaktør": "Jonnathan Cats",
       "excerpt": "Ble ranet av naboet på sol lys",
       "content_file": "tekster/forsideNyhet.md",
-      "preview:bilde": "static/video_og_images/image/introBilde.png",
+      "previewBilde": "static/video_og_images/image/introBilde.png",
       "date_published": "2025-03-26"
     }
   ]

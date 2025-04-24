@@ -41,6 +41,14 @@ main {
   text-decoration: none;
 }
 
+/* Image styling */
+.articlePreview img {
+  max-width: 100%;  /* Makes sure image scales down to fit container */
+  height: auto;     /* Keeps the aspect ratio */
+  border-radius: 8px; /* Optional: rounds corners of the image */
+  margin-bottom: 20px; /* Adds some space between the image and the title */
+}
+
 
 
 
