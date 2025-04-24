@@ -10,10 +10,11 @@ async function loadArticles(category) {
     articles.forEach(article => {
       // Create a preview for each article
       const articleDiv = document.createElement("div");
+      articleDiv.className = "articlePreview"
       articleDiv.innerHTML = `
-        <h2><a href="/article/${article.category}/${article.id}">${article.title}</a></h2>
+        <img src="" alt="" >
+        <h2><a class="articlePreviewTittel" href="/article/${article.category}/${article.id}">${article.title} </a></h2>
         <p>${article.excerpt}</p>
-        <small>Published on: ${article.date_published}</small>
       `;
       container.appendChild(articleDiv);
     });
