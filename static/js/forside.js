@@ -1,31 +1,54 @@
-
-// funksjon for å laste artikler fra JSON filen og vise metadata som preview
-async function loadArticles(category) {
+// Function to fetch articles from the server
+async function fetchArticles(category) {
   try {
     const response = await fetch(`/get_articles/${category}`);
-    const articles = await response.json();
-    console.log("articles:", articles);
-    const container = document.getElementById("articles-container");
-    container.innerHTML = "";
-    articles.forEach(article => {
-      // Create a preview for each article
-      const articleDiv = document.createElement("div");
-      articleDiv.className = "articlePreview"
-      articleDiv.innerHTML = `
-        <img src="${article.previewBilde}" alt="Preview image for ${article.title}">
-        <h2><a class="articlePreviewTittel" href="/article/${article.category}/${article.id}">${article.title} </a></h2>
-        <p>${article.excerpt}</p>
-      `;
-      container.appendChild(articleDiv);
-    });
+    return await response.json();
   } catch (error) {
-    console.error("Error loading articles:", error);
+    console.error("Error fetching articles:", error);
+    return [];
   }
 }
 
-// Load previews when the DOM is fully loaded 
+// Function to create and return a new article preview element
+function createArticlePreview(article, index) {
+  const articleDiv = document.createElement("div");
+  articleDiv.className = "articlePreview";
+
+  // Assign class based on the article's position or content
+  if (index === 0 || article.title.length > 50) {
+    articleDiv.classList.add("large-article");  // Large article for first one or long titles
+  } else {
+    articleDiv.classList.add("small-article");  // Smaller article for others
+  }
+
+  // Insert article content into the preview
+  articleDiv.innerHTML = `
+    <img src="${article.previewBilde}" alt="Preview image for ${article.title}">
+    <h2><a class="articlePreviewTittel" href="/article/${article.category}/${article.id}">${article.title}</a></h2>
+    <p>${article.excerpt}</p>
+  `;
+
+  return articleDiv;
+}
+
+// Function to add articles to the container
+function displayArticles(articles) {
+  const container = document.getElementById("articles-container");
+  container.innerHTML = ""; // Clear the container
+
+  articles.forEach((article, index) => {
+    const articleDiv = createArticlePreview(article, index);
+    container.appendChild(articleDiv);  // Append each article preview to the container
+  });
+}
+
+// Main function to load articles
+async function loadArticles(category) {
+  const articles = await fetchArticles(category);
+  displayArticles(articles);
+}
+
+// Load articles when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  loadArticles("krim");
+  loadArticles("krim", "katteSsport");  // Load articles from the "krim" category (adjust as necessary)
 });
-
-

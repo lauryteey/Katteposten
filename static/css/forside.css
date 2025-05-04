@@ -1,54 +1,64 @@
-
-/* Main content */
-main {
-  padding: 1rem;
+/* Main content container */
+#articles-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* Creates a 12-column grid */
+  gap: 20px;
+  justify-items: center;
+  grid-auto-rows: minmax(300px, auto); /* Allows rows to adjust with a minimum height */
 }
 
-:root {
-  --light-blue: #1b9ce2;
-  --hvit: #ffff;
-  --blue-light: #abc4d3;
-  --light-gray: #f2f2f2;
-  --headerOgFooter: #333;
-  --tittel: #fff;
-
-}
-
-
-/*css for artikkelen*/
+/* Individual article preview */
 .articlePreview {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px auto;
-  max-width: 800px;
-  
   padding: 20px;
   background: #fff;
-}
-
-
-
-.articlePreview h2 {
-  font-size: 3em;
-  margin-bottom: 10px;
-  text-decoration: none;
-  font-family: 'Times New Roman', Times, serif;
-  font;
-}
-
-.articlePreviewTittel{
-  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;  /* Ensure the article fills the grid cell */
+  max-width: 100%;  /* Prevents it from exceeding the grid's width */
+  height: 350px;  /* Set a fixed height for the article boxes */
+  overflow: hidden;  /* Ensures no content overflows the box */
 }
 
 /* Image styling */
 .articlePreview img {
-  max-width: 100%;  /* Makes sure image scales down to fit container */
-  height: auto;     /* Keeps the aspect ratio */
-  border-radius: 8px; /* Optional: rounds corners of the image */
-  margin-bottom: 20px; /* Adds some space between the image and the title */
+  width: 100%;  /* Makes sure the image fills the box width */
+  height: 200px; /* Fixed height for the image */
+  object-fit: cover;  /* Ensures the image covers the box without distorting */
+  border-radius: 8px;
+  margin-bottom: 20px;
 }
 
+/* Large article */
+.large-article {
+  grid-column: span 8;  /* Larger article spans 8 columns */
+}
 
+/* Small article */
+.small-article {
+  grid-column: span 4;  /* Smaller article spans 4 columns */
+}
 
+/* Hover effect for articles */
+.articlePreview:hover {
+  transform: scale(1.05);
+}
 
+/* Heading styling */
+.articlePreview h2 {
+  font-size: 3.5em;
+  margin-bottom: 10px;
+  text-decoration: none;
+  font-family: 'Times New Roman', Times, serif;
+  color: black;
+}
+
+.articlePreview p {
+  font-size: 1em;
+  color: #555;
+  text-align: center;
+  overflow: hidden;  /* Prevents text overflow */
+}

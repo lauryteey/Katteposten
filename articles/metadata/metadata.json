@@ -9,7 +9,26 @@
       "content_file": "tekster/forsideNyhet.md",
       "previewBilde": "static/video_og_images/image/introBilde.png",
       "date_published": "2025-03-26"
+    },
+    {
+      "id": 2,
+      "category": "katteSport",
+      "title": "Meowbron Mjames gjør det igjen!",
+      "Redaktør": "Jonnathan Cats",
+      "excerpt": "Perfekt score",
+      "content_file": "tekster/MeowbronMjames.md",
+      "previewBilde": "static/video_og_images/image/MeowbronMjames2.png",
+      "date_published": "2025-01-24"
+    },
+    {
+      "id": 3,
+      "category": "krim",
+      "title": "Innbrutt av naken individ",
+      "Redaktør": "Jonnathan Cats",
+      "excerpt": "jeg følte meg redd, og innvandret både mental og fysisk og måtte Aura farme...",
+      "content_file": "tekster/InnbruddNaken.md",
+      "previewBilde": "static/video_og_images/image/inbrutt naken.png",
+      "date_published": "2025-01-24"
     }
   ]
 }
-

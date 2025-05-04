@@ -16,7 +16,7 @@ Dette prosjektet er laget for både unge og voksne som er glad i katter og ønsk
 
 - **Frontend:** HTML, CSS (med egen stil), JavaScript
 - **Backend:** Python (Flask), Jinja2
-- **Database:** MySQL
+- **Database:** MySQL (MariaDB)
 - **Annet:** Markdown for artikler, Git for versjonskontroll
 
 ## 🚀 Hvordan bruke prosjektet
