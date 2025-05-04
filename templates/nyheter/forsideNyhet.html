@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/viseNyheter.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+  <script src="{{ url_for('static', filename='js/categoryArticles.js') }}"></script>
   <script src="{{ url_for('static', filename='js/viseNyheter.js') }}"></script>
   <script src="{{ url_for('static', filename='js/menuScript.js') }}"></script>
 </head>
@@ -42,12 +43,11 @@
       &times; <!-- close icon -->
     </button>
     <ul>
-      <li><a href="#a">Siste nyheter</a></li>
-      <li><a href="#a">kattens livsstil</a></li>
-      <li><a href="#a">Kattesport</a></li>
-      <li><a href="#a">Kattekrim</a></li>
-      <li><a href="#a">katteferier</a></li>
-      <li><a href="a">kattehelse</a></li>
+      <li><a href="" class="category-link" data-category="livsstil">Kattelivsstil</a></li>
+      <li><a href="#" class="category-link" data-category="sport">Kattesport</a></li>
+      <li><a href="#" class="category-link" data-category="krim">kattekrim</a></li>
+      <li><a href="#" class="category-link" data-category="ferier">Katteferier</a></li>
+      <li><a href="#" class="category-link" data-category="helse">Kattehelse</a></li>
     </ul>
   </nav>
 

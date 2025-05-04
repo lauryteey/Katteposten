@@ -44,11 +44,13 @@ function displayArticles(articles) {
 
 // Main function to load articles
 async function loadArticles(category) {
+  console.log("Trying to load category:", category);  // DEBUG!
   const articles = await fetchArticles(category);
   displayArticles(articles);
 }
 
 // Load articles when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  loadArticles("krim", "katteSsport");  // Load articles from the "krim" category (adjust as necessary)
+  loadArticles("krim");
+  loadArticles("sport");  // Load articles from the category argument having in mind this are different values (adjust as necessary)
 });

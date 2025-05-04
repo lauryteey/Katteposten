@@ -1,5 +1,7 @@
 # Innbrudd av naken individ 
-## Mrrr hiss meow purr hiss hiss meeeeeow maaow meowmeow hiss purr rrrowr meow rrrowr meeeeeow meeeeeow meeeeeow meowmeow purr meowmeow meeeeeow mew maaow purr.
+
+Huseieren sier at saken er ekstremt ubehagelig.
+
 ![naken](../../static/video_og_images/image/inbrutt%20naken.png "naken")
 
  _Rrrowr meeeeeow maaow meow mrrr mew hiss mew meeeeeow meowmeow meeeeeeow mrrr_
