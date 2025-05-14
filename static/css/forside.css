@@ -1,64 +1,68 @@
 /* Main content container */
 #articles-container {
   display: grid;
-  grid-template-columns: repeat(12, 1fr); /* Creates a 12-column grid */
+  grid-template-columns: repeat(12, 1fr);
   gap: 20px;
   justify-items: center;
-  grid-auto-rows: minmax(300px, auto); /* Allows rows to adjust with a minimum height */
+  grid-auto-rows: minmax(300px, auto);
+  padding-top: 40px;
 }
 
-/* Individual article preview */
 .articlePreview {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  transition: transform 0.3s ease-in-out;
-  width: 100%;  /* Ensure the article fills the grid cell */
-  max-width: 100%;  /* Prevents it from exceeding the grid's width */
-  height: 350px;  /* Set a fixed height for the article boxes */
-  overflow: hidden;  /* Ensures no content overflows the box */
+  background: #ffffffcc; /* Slightly transparent white for softness */
+  box-shadow: none;
+  border-radius: 6px;  /* Just a tiny bit of rounding */
+  transition: none;
+  width: 100%;
+  max-width: 100%;
+  height: 350px;
+  overflow: hidden;
 }
+
 
 /* Image styling */
 .articlePreview img {
-  width: 100%;  /* Makes sure the image fills the box width */
-  height: 200px; /* Fixed height for the image */
-  object-fit: cover;  /* Ensures the image covers the box without distorting */
-  border-radius: 8px;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0;  /* No rounding */
   margin-bottom: 20px;
 }
 
-/* Large article */
+/* Large and small article sizes */
 .large-article {
-  grid-column: span 8;  /* Larger article spans 8 columns */
+  grid-column: span 8;
 }
 
-/* Small article */
 .small-article {
-  grid-column: span 4;  /* Smaller article spans 4 columns */
-}
-
-/* Hover effect for articles */
-.articlePreview:hover {
-  transform: scale(1.05);
+  grid-column: span 4;
 }
 
 /* Heading styling */
 .articlePreview h2 {
-  font-size: 3.5em;
+  font-size: 2em;
   margin-bottom: 10px;
-  text-decoration: none;
   font-family: 'Times New Roman', Times, serif;
   color: black;
+  transition: color 0.3s ease;
 }
 
+.articlePreview h2:hover {
+  color: #0077cc; /* Subtle hover color */
+}
+
+/* Subtitle / paragraph styling */
 .articlePreview p {
   font-size: 1em;
   color: #555;
   text-align: center;
-  overflow: hidden;  /* Prevents text overflow */
+  transition: color 0.3s ease;
+}
+
+.articlePreview p:hover {
+  color: #000; /* Slightly darker on hover */
 }
