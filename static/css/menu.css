@@ -115,10 +115,21 @@ header h1 {
   margin-bottom: 2rem;
 }
 
-.side-menu li a {
+.side-menu li button {
   text-decoration: none;
   color: #333;
   font-size: 1.2rem;
+  border: none;
+  background-color: #fff;
+
+}
+
+.side-menu li a{
+  text-decoration: none;
+  color: #333;
+  font-size: 1.2rem;
+  border: none;
+  background-color: #fff;
 
 }
 

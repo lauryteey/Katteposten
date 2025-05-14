@@ -111,6 +111,8 @@ def get_article_content(category, article_id):
             md_content = f.read()
     except FileNotFoundError:
         return jsonify({"error": "Content file not found"}), 404
+    
+
 
     # Convert Markdown to HTML
     html_content = markdown.markdown(md_content)
@@ -122,6 +124,26 @@ def get_article_content(category, article_id):
         "date_published": article["date_published"],
         "category": article.get("category", category)
     })
+    
+@app.route('/get_articles/all')
+def get_all_articles():
+    metadata_file = os.path.join(ARTICLES_DIR, "metadata", "metadata.json")
+    if not os.path.exists(metadata_file):
+        return jsonify({"error": "metadata.json not found"}), 500
+
+    with open(metadata_file, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    all_articles = data.get("articles", [])
+    # Sort descending by date_published
+    sorted_articles = sorted(
+        all_articles,
+        key=lambda a: a.get('date_published', ''),
+        reverse=True
+    )
+
+    return jsonify({'articles': sorted_articles})
+
 
 
 @app.route('/article/<category>/<article_id>')
@@ -158,13 +180,14 @@ def show_article(category, article_id):
 @app.route('/get_articles/<category>', methods=['GET'])
 def get_articles(category):
     articles = list_articles(category)
+    print("category: ", category)
+    print("articles: ", articles)
     return jsonify(articles)
 
 @app.route('/')
 def home():
-    # Render the home page with articles from a default category (e.g., "krim")
-    articles = list_articles("krim")
-    return render_template('main.html', articles=articles)
+    return render_template('main.html')
+
 
 @app.route('/log_in', methods=['GET'] )
 def log_in():

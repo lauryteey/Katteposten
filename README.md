@@ -35,7 +35,7 @@ For å bruke applikasjonen må du ha følgende på plass:
    - Applikasjonen ligger på GitHub, klon den til datamaskinen din med:
 
      ```bash
-     git clone https://github.com/lauryteey/pi-Monthly-calender.git
+     git clone https://github.com/lauryteey/katteposten.git
      ```
    - Eller last ned ZIP-filen og pakk den ut.
 

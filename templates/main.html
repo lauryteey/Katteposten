@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
   <script src="{{ url_for('static', filename='js/forside.js') }}"></script>
   <script src="{{ url_for('static', filename='js/menuScript.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/categoryArticles.js') }}"></script>
+
   <title>Katteposten - Hjem</title>
 </head>
 
@@ -48,11 +50,12 @@
     </div>
 
     <ul>
-      <li><a href="#" class="category-link" data-category="krim">Kattelivsstil</a></li>
-      <li><a href="#" class="category-link" data-category="sport">Kattesport</a></li>
-      <li><a href="#" class="category-link" data-category="kultur">kattekrim</a></li>
-      <li><a href="#" class="category-link" data-category="kultur">Katteferier</a></li>
-      <li><a href="#" class="category-link" data-category="kultur">Kattehelse</a></li>
+      <li><button class="category-button" data-category="siste-nyheter">Siste Nyheter</button></li>
+      <li><button class="category-button" data-category="krim">KatteKrim</li>
+      <li><button class="category-button" data-category="sport">KatteSport</li>
+      <li><button class="category-button" data-category="kultur">Kattkultur</li>
+      <li><button class="category-button" data-category="livstil">Kattelivsstil</li>
+      <li><button class="category-button" data-category="helse">KatteHelse</li>
     </ul>
   </nav>
 

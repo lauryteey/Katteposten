@@ -1,13 +1,16 @@
-// Function to fetch articles from the server
+// Function to fetch articles to the server
 async function fetchArticles(category) {
   try {
-    const response = await fetch(`/get_articles/${category}`);
-    return await response.json();
+    const endpoint = category === 'all' ? '/get_articles/all' : `/get_articles/${category}`;
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    return data.articles || data;  // returns array directly
   } catch (error) {
     console.error("Error fetching articles:", error);
     return [];
   }
 }
+
 
 // Function to create and return a new article preview element
 function createArticlePreview(article, index) {
@@ -31,6 +34,7 @@ function createArticlePreview(article, index) {
   return articleDiv;
 }
 
+
 // Function to add articles to the container
 function displayArticles(articles) {
   const container = document.getElementById("articles-container");
@@ -42,6 +46,7 @@ function displayArticles(articles) {
   });
 }
 
+
 // Main function to load articles
 async function loadArticles(category) {
   console.log("Trying to load category:", category);  // DEBUG!
@@ -49,8 +54,19 @@ async function loadArticles(category) {
   displayArticles(articles);
 }
 
+
 // Load articles when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
-  loadArticles("krim");
-  loadArticles("sport");  // Load articles from the category argument having in mind this are different values (adjust as necessary)
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category") || "all";
+  loadArticles(category);
+
+  const buttons = document.querySelectorAll(".category-button");
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      const category = button.getAttribute("data-category");
+      loadArticles(category);
+    });
+  });
 });
+
