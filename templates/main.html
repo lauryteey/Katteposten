@@ -33,6 +33,9 @@
     <div class="header-logged-in">
       <span class="greeting">Hei, {{ fornavn }}!</span>
       <a href="/logout" class="logout-button">Logg av</a>
+      <a href="/minside" class="settings-button" title="Min side">
+        <img src="../static/svg icons/settings-svgrepo-com(hvitt).svg" width="25" height="25" alt="Innstillinger" class="settings-icon">
+      </a>
     </div>
     {% else %}
     <a href="{{ url_for('log_in') }}" class="header-login" id="header-login" aria-label="Logg inn">
@@ -58,7 +61,7 @@
     </div>
 
     <ul>
-      <li><button class="category-button" data-category="siste-nyheter">Siste Nyheter</button></li>
+      <li><button class="category-button" data-category="all">Siste Nyheter</button></li>
       <li><button class="category-button" data-category="krim">KatteKrim</li>
       <li><button class="category-button" data-category="sport">KatteSport</li>
       <li><button class="category-button" data-category="kultur">Kattkultur</li>
@@ -97,7 +100,7 @@
         <ul>
           <li><a href="#">Åpenhet om Katteposten</a></li>
           <li><a href="#">Logg over rettelser Katteposten har gjort</a></li>
-          <li><a href="#">VGs trafikkregler</a></li>
+          <li><a href="#">Katteposten trafikkregler</a></li>
         </ul>
       </div>
 

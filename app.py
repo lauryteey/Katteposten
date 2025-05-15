@@ -92,6 +92,42 @@ def hent_ip():
 
 
 
+#Route for å slette kontoen
+@app.route('/slettkonto', methods=['POST'])
+def slett_konto():
+    if 'brukerID' not in session:
+        return redirect('/log_in')
+
+    bruker_id = session['brukerID']
+    passord = request.form['passord']
+
+    # Hent brukerens hash
+    cursor.execute("SELECT passord FROM bruker WHERE brukerID = %s", (bruker_id,))
+    user = cursor.fetchone()
+
+    if user and check_password_hash(user['passord'], passord):
+        # Slett tilknyttede logger først
+        cursor.execute("DELETE FROM innloggingslogg WHERE brukerID = %s", (bruker_id,))
+        cursor.execute("DELETE FROM bruker WHERE brukerID = %s", (bruker_id,))
+        conn.commit()
+        session.clear()
+        return render_template('sletteKonto.html')  #bekreftelse side
+
+    else:
+        # Send tilbake med feilmelding
+        return render_template('minside.html', fornavn=get_fornavn(), feilmelding="Feil passord. Kontoen ble ikke slettet."), 401
+
+
+#Funksjon for å unngå duplisering av fornavn kode
+def get_fornavn():
+    if 'brukerID' in session:
+        cursor.execute("SELECT fornavn FROM bruker WHERE brukerID = %s", (session['brukerID'],))
+        user = cursor.fetchone()
+        if user:
+            return user['fornavn']
+    return None
+
+
 # Article Helper Functions
 
 def fetch_article_metadata(category, article_id):
@@ -250,6 +286,19 @@ def logout():
     session.clear()
     return redirect('/')
 
+#Route til min side, slette kontoen eller logg av
+@app.route('/minside', methods=['GET', 'POST'])
+def minside():
+    if 'brukerID' not in session:
+        return redirect('/log_in')
+
+    fornavn = None
+    cursor.execute("SELECT fornavn FROM bruker WHERE brukerID = %s", (session['brukerID'],))
+    user = cursor.fetchone()
+    if user:
+        fornavn = user['fornavn']
+
+    return render_template('minSide.html', fornavn=fornavn)
 
 
 if __name__ == '__main__':

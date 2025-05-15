@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/forside.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/brukerSide.css') }}">
+    <script src="{{ url_for('static', filename='js/deleteAccount.js') }}" defer></script>
+    <title>Katteposten - Min side </title>
+</head>
+
+<body>
+
+    <header>
+        <!-- Hamburger button on the left -->
+        <button class="open-menu" id="open-menu" aria-label="Open Menu">
+            &#9776; <!-- hamburger icon -->
+        </button>
+
+        <!-- Site title in the middle-->
+        <div class="header-logo">
+            <img src="../static/svg icons/katteposten_white.svg" alt="Katteposten Logo">
+        </div>
+
+        <a href="{{ url_for('log_in') }}" class="header-login" id="header-login" aria-label="Logg inn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person"
+                viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 
+               6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332
+               c-.678.678-.83 1.418-.832 1.664z" />
+            </svg>
+        </a>
+
+    </header>
+
+    <!-- The slide-out side menu -->
+    <nav class="side-menu" id="side-menu">
+        <button class="close-menu" id="close-menu" aria-label="Close Menu">
+            &times; <!-- close icon -->
+        </button>
+
+        <div class="menu-logo">
+            <img src="../static/svg icons/katteposten.svg" alt="Katteposten Logo">
+        </div>
+
+        <ul>
+            <li><button class="category-button" data-category="all">Siste Nyheter</button></li>
+            <li><button class="category-button" data-category="krim">KatteKrim</li>
+            <li><button class="category-button" data-category="sport">KatteSport</li>
+            <li><button class="category-button" data-category="kultur">Kattkultur</li>
+            <li><button class="category-button" data-category="livstil">Kattelivsstil</li>
+            <li><button class="category-button" data-category="helse">KatteHelse</li>
+        </ul>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+    <section class="subheader">
+        <h2 class="user-name"> Velkommen {{ fornavn }}!</h2>
+        <h2 class="minside-title">Min side</h2>
+    </section>
+
+
+    <main>
+        <div class="loggut-knapp">
+            <a href="/logout" class="logout-knappen">Logg ut</a>
+        </div>
+
+        <div class="delete-wrapper">
+            <!-- Først bare én knapp -->
+            <button id="show-delete-form" class="delete-button">Slett konto</button>
+
+            <!-- Skjult skjema som vises etter klikk -->
+
+            <form id="delete-form" method="POST" action="/slettkonto" style="display: none; margin-top: 1rem;">
+                <label for="passord">Vennligst skriv inn passord for å bekrefte:</label>
+                <input type="password" name="passord" required>
+                <button type="submit" class="delete-button">Bekreft sletting</button>
+            </form>
+
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-wrapper">
+
+            <div class="footer-column">
+                <ul>
+                    <li><a href="#">Ansv. redaktør og adm. direktør: Meowthan Cats </a></li>
+                    <li><a href="#">Nyhetsredaktør: Meowthan Cats</a></li>
+                    <li><a href="#">Utviklingsredaktør: Meowthan Cats</a></li>
+                </ul>
+            </div>
+
+
+            <div class="footer-column">
+                <ul>
+                    <li><a href="#">Åpenhet om Katteposten</a></li>
+                    <li><a href="#">Logg over rettelser Katteposten har gjort</a></li>
+                    <li><a href="#">Katteposten trafikkregler</a></li>
+                </ul>
+            </div>
+
+
+            <div class="footer-column">
+                <ul>
+                    <li><a href="#">Les dagens e-avis her</a></li>
+                    <li><a href="#">Kontakt Katteposten</a></li>
+                    <li><a href="#">Annonseinfo</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Bottom row (e.g., copyright) -->
+        <div class="footer-bottom">
+            <p>© 2025 Katteposten | Brukevilkår | Personvernerklæring og informasjonskapsler</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
