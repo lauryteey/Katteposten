@@ -1,45 +1,88 @@
-# Feilsøking og problemløsning 🔧
-
-Underveis i prosjektet støtte jeg på flere utfordringer som jeg lærte mye av:
+# 🧪 Feilsøking og problemløsning 🔧
+Underveis i prosjektet støtte jeg på flere utfordringer som jeg lærte mye av. Her er en oversikt over hva som gikk galt, hvorfor det skjedde, og hvordan jeg løste det.
 
 ## ❌ SVG-logoen vises ikke
+Problem: Kun logoens alt‑tekst ble vist i stedet for selve bildet.
+Årsak: Jeg brukte feil path og hadde glemt .svg på slutten.
+Løsning: Jeg endret pathen slik at Flask fant filen riktig med url_for():
 
-**Problem:** Kun logoens navn (alt‑tekst) ble vist.  
-**Løsning:** Jeg brukte feil path og hadde glemt `.svg` på slutten. Jeg byttet ut:
-```html
-<img src="../static/svg icons/katteposten_white">
-```
-med:
-```html
+````
 <img src="{{ url_for('static', filename='svg/icons/katteposten_white.svg') }}">
-```
+`````
+## ❌ Login fungerte, men jeg ble sendt til feil adresse
+Problem: Etter innlogging ble brukeren sendt til /forside, som ikke fantes.
+Årsak: redirect-verdien etter innlogging var feil i app.py.
+Løsning: Jeg endret redirect til å peke på / i stedet:
 
----
-
-## ❌ Login fungerte, men jeg ble sendt til en feil adresse
-
-**Problem:** Etter innlogging ble brukeren sendt til `/forside`, som ikke fantes.  
-**Løsning:** Jeg endret Flask-route `redirect` til `"/"` i `app.py` etter login.
-
----
-
+````
+return jsonify({"message": "Klarte å logge inn YAY!", "redirect": "/"})
+````
 ## ❌ Inputfeltene var ikke riktig sentrert
 
-**Problem:** Det så ut som det var mer padding på venstre side enn høyre.  
-**Løsning:** Jeg la til:
-```css
+Problem: Det så ut som inputfeltene var skjevt plassert med for mye padding på én side.
+
+Årsak: Standard CSS-modell inkluderte ikke padding og border i total bredde.
+Løsning: Jeg la til box-sizing: border-box i CSS:
+
+````
 *, *::before, *::after {
   box-sizing: border-box;
 }
-```
-for å sikre at `padding` og `border` inkluderes i total bredde.
+````
+## ❌ Feilmeldinger ble ikke vist riktig ved login og registrering
 
----
+Problem: Ved feil input eller feil passord fikk brukeren ingen tilbakemelding.
 
-## ❌ Feilmeldinger ble ikke vist riktig
+Årsak: Ingen synlig respons ble lagt inn i JavaScript.
 
-**Problem:** Feil passord eller manglende input ga ingen respons.  
-**Løsning:** Jeg brukte `textContent` + `style.color` for å vise meldinger via JS-funksjonen `showMessage()`.
+Løsning: Jeg laget en showMessage()-funksjon som brukte textContent og style.color for å vise feilmeldinger i grensesnittet.
+
+## ❌ Artikler vises ikke når man klikker på kategorier fra artikkelsiden
+Problem: Når man var inne på en artikkel (f.eks. ``forsideNyhet.html``) og klikket på en kategori i menyen, ble man sendt til ````/````, men så ikke riktig artikler.
+
+Årsak: Artikler ble tidligere lastet med JavaScript basert på valgt kategori, men vi hentet ikke ````?category=...```` fra URL.
+
+Løsning: Jeg gjorde menyvalgene om til ````<a href="/?category=...">```` -lenker og la til logikk i forside.js som henter kategori fra URL og kaller ````loadArticles(...)````.
+
+## ❌ JavaScript fungerte ikke riktig på artikkelsiden
+Problem: Jeg prøvde å bruke samme ````forside.js```` på ````forsideNyhet.html```` men det førte til feil fordi den siden har annen struktur.
+
+Årsak: ````forside.js```` forventet elementer som ikke fantes på artikkelsiden.
+
+Løsning: Jeg holdt ````forsideNyhet.html```` som en rendret enkeltside og lot menylenkene føre brukeren tilbake til ````/```` med kategori i URL.
+
+## ❌ TypeError: articles.forEach is not a function
+
+Problem: Jeg fikk en JavaScript-feil når jeg prøvde å vise alle artikler.
+
+Årsak: ````fetch()```` returnerte et JSON-objekt, men jeg prøvde å bruke ````forEach```` på hele objektet i stedet for ````data.articles````.
+
+Løsning: Jeg endret ````fetchArticles()```` slik at den returnerer kun data.articles:
+
+`````js 
+const data = await response.json();
+return data.articles || [];
+``````
+## ❌ 500 Internal Server Error ved lasting av alle artikler
+
+Problem: Flask ga en intern serverfeil når jeg prøvde å laste alle artikler via ````/get_articles/all.````
+
+Årsak: ````metadata.json```` ble forsøkt åpnet med feil path.
+
+Løsning: Jeg brukte ````os.path.join()```` med riktig base:
+
+````python
+metadata_file = os.path.join(ARTICLES_DIR, "metadata", "metadata.json")
+````
+## 📎 Filendringer som ble berørt
+
+templates/forsideNyhet.html – menyen bruker nå ````<a>-lenker````
+
+templates/main.html – viser kun tomt oppsett, ikke ferdig renderte artikler
+
+static/js/forside.js – leser kategori fra URL og laster innhold dynamisk
+
+app.py – endret /-ruten til å ikke returnere artikler direkte
 
 
 # Lovverk og etikk 🧾
