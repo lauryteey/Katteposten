@@ -1,3 +1,15 @@
+:root {
+  --light-pink: #FFB6C1;
+  --light-blue: #1b9ce2;
+  --rose-quartz: #F7CAC9;
+  --hvit: #ffff;
+  --blue-light: #abc4d3;
+  --light-gray: #f2f2f2;
+  --oxford-blue: #002147;  /* Added to match login page hover effect */
+  --blub-blub: #0b83ce;    /* Also available if needed */
+}
+
+
 /* Styles for the article content container */
 #article-content {
     font-family: "Georgia", serif;
@@ -65,3 +77,29 @@
     text-align: right;
   }
   
+  .header-logged-in {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-right: 1rem;
+  }
+  
+  .greeting {
+    font-weight: bold;
+    color: white;
+  }
+  
+  .logout-button {
+    background-color: var(--light-blue);
+    color: white;
+    padding: 0.4em 0.8em;
+    border: none;
+    border-radius: 100px;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .logout-button:hover {
+    background-color: var(--hvit);
+    color: var(--oxford-blue);
+  }

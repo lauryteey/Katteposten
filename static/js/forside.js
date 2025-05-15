@@ -38,11 +38,22 @@ function createArticlePreview(article, index) {
 // Function to add articles to the container
 function displayArticles(articles) {
   const container = document.getElementById("articles-container");
-  container.innerHTML = ""; // Clear the container
+  const message = document.getElementById("no-articles-message");
+
+  container.innerHTML = ""; // Tøm artiklene
+
+  if (!articles || articles.length === 0) {
+    message.style.display = "block";
+    message.textContent = "Hmm... ser ut som at det ikke finnes katteartikler her 🐾";
+    return;
+  }
+
+  // Hvis det finnes artikler, skjul meldingen
+  message.style.display = "none";
 
   articles.forEach((article, index) => {
     const articleDiv = createArticlePreview(article, index);
-    container.appendChild(articleDiv);  // Append each article preview to the container
+    container.appendChild(articleDiv);
   });
 }
 

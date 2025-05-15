@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, session, render_template
+from flask import Flask, request, jsonify, session, render_template, redirect
 import os
 import json
 import mysql.connector
@@ -152,28 +152,28 @@ def show_article(category, article_id):
     if not article:
         return "Artikkel ikke funnet", 404
 
-    # Construct the full file path
+    # Hent innhold fra fil
     content_path = os.path.join(ARTICLES_DIR, article["content_file"])
-    print("Loading content from:", content_path)  # Debug print
-
     try:
         with open(content_path, "r", encoding="utf-8") as f:
             md_content = f.read()
-    except FileNotFoundError as fnf_error:
-        print("Content file not found:", fnf_error)
+    except Exception:
         return "Innhold ikke funnet", 404
-    except Exception as e:
-        print("Error loading content:", e)
-        return "Noe gikk galt med å laste artikkelen", 500
 
-    # Convert the Markdown content to HTML
+    # Konverter til HTML
     article["content"] = markdown.markdown(md_content)
 
-    try:
-        return render_template("nyheter/forsideNyhet.html", article=article)
-    except Exception as e:
-        print("Error rendering template:", e)
-        return "Feil med å vise artikkelen", 500
+    # Hent fornavn dersom bruker er logget inn
+    fornavn = None
+    if 'brukerID' in session:
+        cursor.execute("SELECT fornavn FROM bruker WHERE brukerID = %s", (session['brukerID'],))
+        user = cursor.fetchone()
+        if user:
+            fornavn = user['fornavn']
+
+    # Send med article + fornavn til templaten
+    return render_template("nyheter/forsideNyhet.html", article=article, fornavn=fornavn)
+
 
 
 
@@ -184,9 +184,20 @@ def get_articles(category):
     print("articles: ", articles)
     return jsonify(articles)
 
+
+
 @app.route('/')
 def home():
-    return render_template('main.html')
+    fornavn = None
+    if 'brukerID' in session:
+        query = "SELECT fornavn FROM bruker WHERE brukerID = %s"
+        cursor.execute(query, (session['brukerID'],))
+        user = cursor.fetchone()
+        if user:
+            fornavn = user['fornavn']
+
+    return render_template('main.html', fornavn=fornavn)
+
 
 
 @app.route('/log_in', methods=['GET'] )
@@ -196,6 +207,12 @@ def log_in():
 @app.route('/sign_up')
 def sign_up():
     return render_template('register.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
