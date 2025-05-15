@@ -56,7 +56,7 @@
 }
 
 /* Heading styling */
-.articlePreview h2, a {
+.articlePreview h2 {
   font-size: 2em;
   margin-bottom: 10px;
   font-family: 'Times New Roman', Times, serif;

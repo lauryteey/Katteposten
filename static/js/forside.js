@@ -41,6 +41,7 @@ function displayArticles(articles) {
   const message = document.getElementById("no-articles-message");
 
   container.innerHTML = ""; // Tøm artiklene
+  message.style.display = "none"; //  Skjul artikkelen først
 
   if (!articles || articles.length === 0) {
     message.style.display = "block";
@@ -60,6 +61,9 @@ function displayArticles(articles) {
 
 // Main function to load articles
 async function loadArticles(category) {
+  const message = document.getElementById("no-articles-message");
+  message.style.display = "none"; // Reset ved bytte av kategori
+
   console.log("Trying to load category:", category);  // DEBUG!
   const articles = await fetchArticles(category);
   displayArticles(articles);

@@ -21,22 +21,42 @@ cursor = conn.cursor(dictionary=True)
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
+
+    # Sjekk at e-post og passord er sendt med
     if 'e_post' not in data or 'passord' not in data:
         return jsonify({"error": "E-post og passord er påkrevd"}), 400
 
     e_post = data['e_post']
     passord = data['passord']
+
+    # Hent bruker med e-post
     query = "SELECT brukerID, passord FROM bruker WHERE e_post = %s"
     cursor.execute(query, (e_post,))
     user = cursor.fetchone()
 
+    # Sjekk at passordet stemmer
     if user and check_password_hash(user['passord'], passord):
         session['brukerID'] = user['brukerID']
+
+        # Hent IP-adresse
+        ip = hent_ip()
+
+        # Logg innlogging i databasen
+        cursor.execute(
+            "INSERT INTO innloggingslogg (brukerID, handling, ip_adresse) VALUES (%s, 'inn', %s)",
+            (user['brukerID'], ip)
+        )
+        conn.commit()
+
         return jsonify({"message": "Klarte å logge inn YAY!", "redirect": "/"}), 200
+
     elif user:
         return jsonify({"error": "Feil passord."}), 401
+
     else:
         return jsonify({"error": "Bruker ble ikke funnet."}), 404
+
+
 
 @app.route('/create_user', methods=['POST'])
 def create_user():
@@ -63,6 +83,13 @@ def create_user():
     cursor.execute(query, values)
     conn.commit()
     return jsonify({"message": "Brukeren ble opprettet!"}), 201
+
+# Henter ip for innloggingslogg
+def hent_ip():
+    if request.headers.get('X-Forwarded-For'):
+        return request.headers.get('X-Forwarded-For').split(',')[0]
+    return request.remote_addr
+
 
 
 # Article Helper Functions
@@ -210,8 +237,19 @@ def sign_up():
 
 @app.route('/logout')
 def logout():
+    if 'brukerID' in session:
+        bruker_id = session['brukerID']
+        ip = hent_ip()
+
+        cursor.execute(
+            "INSERT INTO innloggingslogg (brukerID, handling, ip_adresse) VALUES (%s, 'ut', %s)",
+            (bruker_id, ip)
+        )
+        conn.commit()
+
     session.clear()
     return redirect('/')
+
 
 
 if __name__ == '__main__':
