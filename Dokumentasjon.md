@@ -74,7 +74,35 @@ Løsning: Jeg brukte ````os.path.join()```` med riktig base:
 ````python
 metadata_file = os.path.join(ARTICLES_DIR, "metadata", "metadata.json")
 ````
-## 📎 Filendringer som ble berørt
+
+## ❌ Hosting av egen nettside med AWS og Gunicorn
+
+I dette prosjektet prøvde jeg å sette opp min egen server for å hoste en webapplikasjonen. Målet var å lære hvordan sette opp mitt eget domene altså å gjøre det “helt selv” med en virtuell server fra **Amazon Web Services (AWS)**.
+
+## Hva jeg prøvde å gjøre
+
+- Jeg lagde en Flask-applikasjon.
+
+- Jeg opprettet en **EC2-instans** (en virtuell maskin) på AWS med **Ubuntu** som operativsystem.
+
+- Jeg installerte nødvendige programmer og pakker, som Python, pip, og opprettet et **virtuelt miljø**.
+
+- Jeg installerte og brukte **Gunicorn** for å kjøre Flask-appen, siden det er en mer produksjonsklar server enn Flask sin innebygde utviklingsserver.
+
+- Jeg planla også å bruke **Nginx** for å koble trafikk fra nettleseren til Gunicorn og Flask-appen.
+
+## Problem
+Hver gang jeg prøvde å starte Gunicorn, fikk jeg en **feil 9: "bad file descriptor"**.
+
+## Løsning 
+- Jeg prøvde å bytte porter, sjekke filrettigheter og bruke forskjellige kommandoer for å starte Gunicorn, men feilen kom fortsatt.
+
+- Jeg prøvde også å legge databasen (som appen brukte) direkte på EC2-serveren, men det fungerte heller ikke – mest sannsynlig på grunn av samme eller lignende tilkoblingsproblemer.
+
+- På grunn av disse feilene klarte jeg **ikke å få applikasjonen opp og kjøre på serveren**, verken med backend eller database.
+
+
+## Filendringer som ble berørt
 
 templates/forsideNyhet.html – menyen bruker nå ````<a>-lenker````
 

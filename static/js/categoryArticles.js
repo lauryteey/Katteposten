@@ -1,29 +1,48 @@
-// This fucntion fetches the aricles from a specific category when the user clicks on a category link
+// Wait until the whole page has loaded
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll('.category-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-      console.log("category link e called");
 
+  // Find all elements with the class "category-link"
+  document.querySelectorAll('.category-link').forEach(link => {
+
+    // When a category link is clicked
+    link.addEventListener('click', (e) => {
+      console.log("category link clicked");
+
+      // Stop the link from going to a new page
       e.preventDefault();
+
+      // Get the category name from the link's data attribute
       const category = link.dataset.category;
 
+      // Send a request to the server to get the articles for that category
       fetch(`/get_articles/${category}`)
-        .then(res => res.json())
+        .then(res => res.json()) // Convert the response to JSON
         .then(articles => {
+          // Find the container where articles will be shown
           const container = document.getElementById('articles-container');
-          container.innerHTML = ''; // Clear previous articles
 
+          // Clear any old articles from the container
+          container.innerHTML = '';
+
+          // Go through each article and add it to the page
           articles.forEach(article => {
             const div = document.createElement('div');
+
+            // Set the HTML content for this article
             div.innerHTML = `
               <h2>${article.title}</h2>
               <p>Publisert: ${article.date_published}</p>
               <a href="/article/${article.category}/${article.id}">Les mer</a>
             `;
+
+            // Add the article to the container
             container.appendChild(div);
           });
         })
-        .catch(err => console.error("Feil med å hente artikler:", err));
+        .catch(err => {
+          // If there is an error, show it in the console
+          console.error("Feil med å hente artikler:", err);
+        });
     });
   });
 });

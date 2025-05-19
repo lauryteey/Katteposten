@@ -84,11 +84,13 @@ def create_user():
     conn.commit()
     return jsonify({"message": "Brukeren ble opprettet!"}), 201
 
+
 # Henter ip for innloggingslogg
 def hent_ip():
-    if request.headers.get('X-Forwarded-For'):
-        return request.headers.get('X-Forwarded-For').split(',')[0]
-    return request.remote_addr
+    if request.headers.get('X-Forwarded-For'):# X-Forwarded-For used when the user is behind a proxy, so it gets the original IP
+        return request.headers.get('X-Forwarded-For').split(',')[0] # Tar første elementen i listen
+    return request.remote_addr     # If there's no proxy header, just return the direct IP address from the request
+    # request.remote_addr used when there is no proxy, so gets the direct IP.
 
 
 
@@ -240,11 +242,17 @@ def show_article(category, article_id):
 
 
 
+# This route handles GET requests to fetch articles based on a category
 @app.route('/get_articles/<category>', methods=['GET'])
 def get_articles(category):
+    # Call and fetches articles for the given category
     articles = list_articles(category)
+
+    # debugging)
     print("category: ", category)
     print("articles: ", articles)
+
+    # Return the articles as JSON so they can be used in JavaScript
     return jsonify(articles)
 
 
