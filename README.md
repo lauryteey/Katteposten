@@ -121,6 +121,7 @@ Nei, I denne versjonen av prosjektet er nettsiden ikke responsiv.
 ### Hvordan kan jeg bidra?
 Hvis du ønsker å foreslå nye funksjoner eller artikler, send gjerne en e-post til [laura@katteposten.online](mailto:laura@katteposten.online) eller opprett et “issue” på GitHub-repoet! 🌸
 
-
+ps kristian lien var veldig sigma og lagde kattespråk translator 😸
+https://www.github.com/kristianlien 😼
 
 
