@@ -82,6 +82,10 @@
             </form>
 
         </div>
+        {% if feilmelding %}
+        <div class="error-message">{{ feilmelding }}</div>
+        {% endif %}
+
     </main>
 
     <footer class="site-footer">

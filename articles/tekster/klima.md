@@ -2,11 +2,15 @@
 
 ## Om ingenting endred kan kosenvkense være kattastrofale
 
+![naken](../../static/video_og_images/image/KlimaKrise.png "naken")
+
 **Av Jakob, Jeremy og laura Cats**
 
 _Redaktører av Katteposten_
 
 Publisert: 24.01.2025 11:45 | Oppdatert: 03.02.2025 00:41
+
+---
 
 ## Global temperatur rekord i januar 2025
 Ifølge Copernicus Climate Change Service var januar 2025 den varmeste januar som noen gang hadde blitt registrert globalt. I januar 20205 ble det målt globalt gjennomsnitts luft temperatur på 13.23 grader celsius, dette er 0.79 grader varmere enn januar gjennomsnitts temperaturen mellom 1991 og 2020. 
@@ -29,7 +33,7 @@ Den lave vannstanden rammer også økonomien. Elvene fungerer som viktige transp
 
 Selv om vegetasjonen i mange områder fortsatt ser grønn og sunn ut, advarer eksperter om at dette kan være midlertidig. Tidlig vekst i planter kan skjule sårbarheter som vil bli tydeligere hvis tørken fortsetter. Dersom de tørre forholdene vedvarer gjennom sommeren, vil både landbruk og natur bli ytterligere rammet.
 
-## Hva vi må gjøre
-Selv om klimakrisen ser grå ut, kan vi ikke miste håpet. Vi har fortsatt en sjanse for å redde planeten og fremtiden.
+## Hva vi må gjøre?
+Selv om klimakrisen ser grå ut, kan vi ikke miste håpet. Vi har fortsatt en sjanse for å redde planeten og fremtiden. Vi kan starte ved å demonstrere mer mot drilling av olje, kutting av trær og storfisking i havet og gjøre det vanskeligere for grådige bedrifter til å utnytte disse ressursene. Vi kan også hjelpe direkte ved å resirkulere, bruke mindre plast og rydde opp søppel på gatene og i naturen.
 
 
