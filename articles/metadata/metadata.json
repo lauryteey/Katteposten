@@ -39,6 +39,26 @@
       "content_file": "tekster/klimaKatt.md",
       "previewBilde": "static/video_og_images/image/KlimaKrise.png",
       "date_published": "2025-01-24"
+    },
+    {
+      "id": 5,
+      "category": "livstil",
+      "title": "Mari (39) har fått lage sitt eget restaurant __Le Chat__",
+      "Redaktør": "Jonnathan Cats",
+      "excerpt": "Jeg trodde aldri jeg skulle få det til - Sier Mari",
+      "content_file": "tekster/MariLeChat.md",
+      "previewBilde": "static/video_og_images/image/Mari_39_laget_sitt_skole.jpg",
+      "date_published": "2025-12-14"
+    },
+    {
+      "id": 6,
+      "category": "krim",
+      "title": "Kattastisk ran i Oslo",
+      "Redaktør": "Jonnathan Cats",
+      "excerpt": "Ran av en katt i Oslo sentrum",
+      "content_file": "tekster/KattastiskRan.md",
+      "previewBilde": "static/video_og_images/image/kattastisk_ran.jpg",
+      "date_published": "2025-12-14"
     }
   ]
 }
