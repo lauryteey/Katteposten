@@ -2,11 +2,130 @@
 
 ## 👩‍💻 Om Katteposten
 
-Katteposten er en nettside for å publisere artikler, med brukerpålogging og kategoribasert lagring. Artiklene lagres som **Markdown-filer**, og metadata til hver artikkel lagres i en felles `metadata.json`-fil med informasjon som tittel, utdrag, publiseringsdato og filsti til selve Markdown-filen.
+Katteposten er et nyhetsnettsted der brukere kan logge inn og lese artikler som lagres i Markdown-filer. Metadata om artiklene (tittel, utdrag, dato, osv.) lagres i en ````JSON````-fil. Jeg bruker ````Flask```` (````Python````) til backend, ````JavaScript```` til frontend, og ````MariaDB```` til brukerinformasjon.
 
 Katteposten har egne ruter for innlogging og registrering. Brukere lagres i databasen i tabellen `bruker`.
 
 ---
+## 🙋‍♀️ Brukerstøtte
+
+**Dette skal jeg vise og forklare:**
+
+- Hvordan brukeren registrerer seg og logger inn.
+
+- Hvordan systemet gir tydelige tilbakemeldinger ved feil (f.eks. feil passord, tomme felt).
+
+- At passord lagres trygt (med generate_password_hash).
+
+- Tilgjengelighet: gode kontraster, alt-tekst på bilder, og ryddig struktur.
+
+  **Eksempler jeg kan nevne:**
+
+    1. ````logIn.js```` viser meldinger med ````showMessage()````.
+
+  	2. ````register.js```` validerer input før det sendes til serveren.
+
+    3. ````slett_konto()````-funksjonen lar brukeren slette seg selv etter å ha bekreftet passord.
+
+## ⚙️ Drift
+
+**Dette skal jeg vise og forklare:**
+
+Jeg bruker ````config.py```` til å lagre database-innstillinger.
+
+````Flask```` kobler seg til ````MariaDB```` med ````mysql.connector````.
+
+Artiklene lagres lokalt som ````Markdown-filer````, og metadata hentes fra ````articles/metadata/metadata.json.````
+
+## SQL-kommandoer jeg kan skrive på eksamen:
+
+````sql
+-- Se alle brukere:
+SELECT * FROM bruker;
+````
+
+````sql
+-- Legg til en testbruker:
+INSERT INTO bruker (e_post, passord, fornavn, etternavn) 
+VALUES ('test@test.no', '1234', 'Test', 'Person');
+````
+````sql
+-- Oppdater en adresse:
+UPDATE bruker SET adresse = 'Gate 12' WHERE e_post = 'test@test.no';
+````
+````sql
+-- Slett logger for en bruker:
+DELETE FROM innloggingslogg WHERE brukerID = 3;
+````
+**Viktig:** Jeg bruker ikke brukerinndata direkte i SQL, men sender dem som parametre:
+
+## Eksempel på usikker kode (SQL injection):
+
+**Ikke gjør dette:**
+````python
+query = f"SELECT * FROM bruker WHERE e_post = '{e_post}'"
+cursor.execute(query)
+````
+
+Hvis en bruker skriver inn dette som **e-post**: ````test@test.no```` ELLER ````1'='1````, vil hele tabellen bli returnert fordi betingelsen alltid blir sann.
+
+**Sikker måte:**
+````python
+cursor.execute("SELECT * FROM bruker WHERE e_post = %s", (e_post,))
+````
+
+Dette forklarer hvordan SQL-spørringer skrives sikkert med parametere for å unngå SQL-injection. Da blir verdiene sendt trygt til databasen og ikke blandet inn som kode.
+
+## 🧑‍💻 Utvikling
+
+**Dette skal jeg forklare og vise fra koden:**
+
+Jeg bruker ````@app.route('/login')```` og ````@app.route('/create_user')```` for innlogging og registrering.
+
+````session```` ved bruk av ````flask```` lagrer hvem som er logget inn så lenge brukeren inntil brukeren logger ut eller 
+
+````IP-adresse```` Når noen logger inn eller ut, lagres IP-adressen deres i en egen tabell i databasen, sammen med tidspunkt og handlingen (inn/ut).
+
+Artikler vises med ````Flask```` ````(render_template)```` eller hentes med ````fetch (JS)````. Noen ganger vises artiklene direkte i ````HTML-sider```` jeg lager med ````Flask````, da bruker jeg ````render_template````. Andre ganger henter jeg artiklene med ````JavaScript```` og viser dem dynamisk på siden uten å laste hele siden på nytt.
+
+---
+
+
+## Kode jeg kan skrive foran sensor (for å vise kunnskap):
+
+`````` python 
+# Validering av e-post:
+
+def er_gyldig_epost(epost):
+    return "@" in epost and "." in epost
+``````
+
+2. Telle artikler i en kategori:
+
+import os
+
+def tell_artikler():
+    path = "articles/nyheter"
+    return len([f for f in os.listdir(path) if f.endswith(".md")])
+
+3. Filtrere artikler fra metadata:
+
+def hent_artikler_fra_kategori(metadata, kategori):
+    return [art for art in metadata.get("articles", []) if art.get("category") == kategori]
+
+4. Legge til metadata i JSON:
+
+import json
+
+def legg_til_metadata(ny_metadata):
+    with open("articles/metadata/metadata.json", "r+", encoding="utf-8") as fil:
+        data = json.load(fil)
+        data["articles"].append(ny_metadata)
+        fil.seek(0)
+        json.dump(data, fil, indent=4)
+
+Dette forklarer jeg også under utvikling:
+
 
 ## 🛠️ Dette har jeg laget:
 
