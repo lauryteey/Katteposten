@@ -1,105 +1,151 @@
 :root {
-  --light-pink: #FFB6C1;
   --light-blue: #1b9ce2;
-  --rose-quartz: #F7CAC9;
   --hvit: #ffff;
   --blue-light: #abc4d3;
   --light-gray: #f2f2f2;
-  --oxford-blue: #002147;  /* Added to match login page hover effect */
-  --blub-blub: #0b83ce;    /* Also available if needed */
+  --oxford-blue: #002147;
+  /* Added to match login page hover effect */
+  --blub-blub: #0b83ce;
+  /* Also available if needed */
 }
 
 
 /* Styles for the article content container */
 #article-content {
-    font-family: "Georgia", serif;
-    font-size: 20px;
-    line-height: 1.6;
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 35px;
-    color: #333;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    white-space: pre-wrap;  /* Preserves newlines and white space */
+  font-family: "Georgia", serif;
+  font-size: 20px;
+  line-height: 1.6;
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 35px;
+  color: #333;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  white-space: pre-wrap;
+  /* Preserves newlines and white space */
+}
+
+#article-content img {
+  max-width: 100%;
+  /* Ensures the image won't exceed the width of its container */
+  height: auto;
+  /* Maintains aspect ratio */
+  display: block;
+  /* Removes extra space below images */
+  margin: 20px auto;
+  /* Optional: centers the image and adds vertical spacing */
+}
+
+#article-content video {
+  max-width: 100%;
+  /* Prevent the video from exceeding the container width */
+  height: auto;
+  /* Maintain aspect ratio */
+  display: block;
+  /* Remove extra inline spacing */
+  margin: 20px auto;
+  /* Center the video with some vertical spacing */
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  /* Allows items to wrap if there's not enough space */
+  align-items: center;
+  /* Vertically center items */
+  gap: 1rem;
+  /* Spacing between items */
+  margin-bottom: 1.5em;
+  /* Space below the byline */
+  font-size: 0.9rem;
+  /* Slightly smaller text than the article body */
+  color: #444;
+}
+
+.author-photo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  /* Circular photo */
+}
+
+.author-details {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.author-details strong {
+  font-weight: 600;
+  /* Bold author name */
+  color: #000;
+}
+
+.author-details em {
+  font-style: italic;
+  color: #666;
+}
+
+.publication-time {
+  margin-left: auto;
+  /* Push this to the right if there's space */
+  white-space: nowrap;
+  /* Keep the dates on one line */
+  text-align: right;
+}
+
+
+
+/* Responsive styles for tablets and smaller devices */
+@media (max-width: 768px) {
+  #article-content {
+    padding: 20px;
+    font-size: 18px;
   }
 
-  #article-content img {
-    max-width: 100%;  /* Ensures the image won't exceed the width of its container */
-    height: auto;     /* Maintains aspect ratio */
-    display: block;   /* Removes extra space below images */
-    margin: 20px auto; /* Optional: centers the image and adds vertical spacing */
-  }
-
-  #article-content video {
-    max-width: 100%;  /* Prevent the video from exceeding the container width */
-    height: auto;     /* Maintain aspect ratio */
-    display: block;   /* Remove extra inline spacing */
-    margin: 20px auto; /* Center the video with some vertical spacing */
-  }
-  
   .article-meta {
-    display: flex;
-    flex-wrap: wrap;      /* Allows items to wrap if there's not enough space */
-    align-items: center;  /* Vertically center items */
-    gap: 1rem;            /* Spacing between items */
-    margin-bottom: 1.5em; /* Space below the byline */
-    font-size: 0.9rem;    /* Slightly smaller text than the article body */
-    color: #444;
-  }
-  
-  .author-photo {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;   /* Circular photo */
-  }
-  
-  .author-details {
-    display: flex;
     flex-direction: column;
-    line-height: 1.2;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
-  
-  .author-details strong {
-    font-weight: 600;     /* Bold author name */
-    color: #000;
+
+  .author-photo {
+    width: 40px;
+    height: 40px;
   }
-  
-  .author-details em {
-    font-style: italic;
-    color: #666;
-  }
-  
+
   .publication-time {
-    margin-left: auto;    /* Push this to the right if there's space */
-    white-space: nowrap;  /* Keep the dates on one line */
-    text-align: right;
+    text-align: left;
+    margin-left: 0;
   }
-  
+}
+@media (max-width: 1024px) {
+  #article-content {
+    padding: 30px;
+    font-size: 19px;
+  }
+
+  .author-photo {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+@media (max-width: 640px) {
+  #article-content {
+    padding: 22px;
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 375px) {
+  #article-content {
+    padding: 15px;
+    font-size: 15px;
+  }
+
   .header-logged-in {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-right: 1rem;
+    gap: 0.5rem;
   }
-  
-  .greeting {
-    font-weight: bold;
-    color: white;
-  }
-  
-  .logout-button {
-    background-color: var(--light-blue);
-    color: white;
-    padding: 0.4em 0.8em;
-    border: none;
-    border-radius: 100px;
-    text-decoration: none;
-    font-size: 0.9rem;
-  }
-  
-  .logout-button:hover {
-    background-color: var(--hvit);
-    color: var(--oxford-blue);
-  }
+}

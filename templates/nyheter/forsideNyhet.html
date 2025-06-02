@@ -31,6 +31,10 @@
     <div class="header-logged-in">
       <span class="greeting">Hei, {{ fornavn }}!</span>
       <a href="/logout" class="logout-button">Logg av</a>
+      <a href="/minside" class="settings-button" title="Min side">
+        <img src="../../static/svg icons/settings-svgrepo-com(hvitt).svg" width="25" height="25" alt="Innstillinger"
+          class="settings-icon">
+      </a>
     </div>
     {% else %}
     <a href="{{ url_for('log_in') }}" class="header-login" id="header-login" aria-label="Logg inn">

@@ -1,12 +1,12 @@
 :root {
-  --light-pink: #FFB6C1;
   --light-blue: #1b9ce2;
-  --rose-quartz: #F7CAC9;
   --hvit: #ffff;
   --blue-light: #abc4d3;
   --light-gray: #f2f2f2;
-  --oxford-blue: #002147;  /* Added to match login page hover effect */
-  --blub-blub: #0b83ce;    /* Also available if needed */
+  --oxford-blue: #002147;
+  /* Added to match login page hover effect */
+  --blub-blub: #0b83ce;
+  /* Also available if needed */
 }
 
 /* Main content container */
@@ -26,9 +26,11 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: #ffffffcc; /* Slightly transparent white for softness */
+  background: #ffffffcc;
+  /* Slightly transparent white for softness */
   box-shadow: none;
-  border-radius: 6px;  /* Just a tiny bit of rounding */
+  border-radius: 6px;
+  /* Just a tiny bit of rounding */
   transition: none;
   width: 100%;
   max-width: 100%;
@@ -42,7 +44,8 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 0;  /* No rounding */
+  border-radius: 0;
+  /* No rounding */
   margin-bottom: 20px;
 }
 
@@ -78,56 +81,49 @@
 }
 
 .articlePreview p:hover {
-  color: #000; /* Slightly darker on hover */
+  color: #000;
+  /* Slightly darker on hover */
 }
 
-.header-logged-in {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-right: 1rem;
-}
 
-.greeting {
-  font-weight: bold;
-  color: white;
-}
-
-.logout-button {
-  background-color: var(--light-blue);
-  color: white;
-  padding: 0.4em 0.8em;
-  border: none;
-  border-radius: 100px;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.logout-button:hover {
-  background-color: var(--hvit);
-  color: var(--oxford-blue);
-}
-
+/*Feil melding hvis det ikke er artikler å vise */
 .no-articles-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
   text-align: center;
   font-style: italic;
   font-size: 1.2rem;
-  margin: 2rem 1rem;
+  margin: 5rem 0;
   color: #555;
-  display: flex;
-  justify-content: center;
-  padding-top: 170px;
+  padding: 100px 1rem;
+  /* padding top to push it down a bit */
 }
 
 
 /*responsivitet for previews*/
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .large-article {
     grid-column: span 12;
   }
 
   .small-article {
     grid-column: span 6;
+  }
+}
+
+@media (max-width: 992px) {
+  #articles-container {
+    grid-template-columns: repeat(8, 1fr);
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .small-article,
+  .large-article {
+    grid-column: span 8;
   }
 }
 
@@ -144,6 +140,19 @@
   }
 }
 
+@media (max-width: 576px) {
+  #articles-container {
+    grid-template-columns: repeat(4, 1fr);
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .small-article,
+  .large-article {
+    grid-column: span 4;
+  }
+}
+
 @media (max-width: 480px) {
   #articles-container {
     grid-template-columns: repeat(1, 1fr);
@@ -157,33 +166,10 @@
   }
 
   .articlePreview {
-    height: auto; /* Allow height to adjust naturally on small screens */
+    height: auto;
   }
 
   .articlePreview img {
-    height: 150px; /* Slightly smaller image for small devices */
+    height: 150px;
   }
 }
-
-/*responsive style for header*/
-@media (max-width: 768px) {
-  .header-logged-in {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    margin-right: 0;
-  }
-
-  .greeting {
-    font-size: 1rem;
-  }
-
-  .logout-button {
-    font-size: 0.85rem;
-    padding: 0.3em 0.6em;
-  }
-}
-
-
-

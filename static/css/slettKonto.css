@@ -1,0 +1,51 @@
+    :root {
+        --light-blue: #1b9ce2;
+        --hvit: #ffff;
+        --blue-light: #abc4d3;
+        --light-gray: #f2f2f2;
+        --headerOgFooter: #333;
+        --tittel: #fff;
+
+    }
+
+    /* Basic reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+        background-color: var(--light-gray);
+    }
+
+    .delete-success {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+        font-size: 1.5 rem;
+        margin-top: 20px;
+        gap: 10px;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 480px) {
+        .delete-success {
+            padding: 1rem;
+        }
+
+        .delete-success p,
+        .delete-success h1 {
+            font-size: 1.2rem;
+        }
+
+        .delete-success a {
+            width: 100%;
+            max-width: 250px;
+            font-size: 0.95rem;
+        }
+    }

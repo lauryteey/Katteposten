@@ -36,14 +36,15 @@ body {
     font-size: 1.8rem;
     margin-bottom: 25px;
     color: black;
-    text-align: center; 
+    text-align: center;
 }
 
 /* Katteposten logo */
 .logo {
     display: block;
     width: 120px;
-    margin: 0 auto 40px auto; /* center the logo */
+    margin: 0 auto 40px auto;
+    /* center the logo */
 }
 
 /* The form itself: vertical stack, full width */
@@ -60,7 +61,8 @@ body {
 #login-form label {
     font-size: 0.9rem;
     font-weight: 500;
-    text-align: left; /* explicitly left-align */
+    text-align: left;
+    /* explicitly left-align */
     margin-bottom: 3px;
 }
 
@@ -77,8 +79,10 @@ body {
    then margin: 0 auto; to horizontally center it */
 #login-form button {
     display: block;
-    margin: 0 auto;           /* centers horizontally */
-    padding: 12px 40px;       /* wide but not entire container */
+    margin: 0 auto;
+    /* centers horizontally */
+    padding: 12px 40px;
+    /* wide but not entire container */
     font-size: 1rem;
     border: none;
     border-radius: 8px;
@@ -96,27 +100,78 @@ body {
 }
 
 /* Signup section at bottom, centered text */
-.signup-redirect{
+.signup-redirect {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #signup-btn {
-    background: none;             /* Remove background color */
-    border: none;                 /* Remove border */
-    padding: 0;                   /* Remove extra padding */
-    margin: 0;                    /* Remove extra margin */
-    font-size: 14px;              /* Set your font size */
-    color: var(--blub-blub);               /* Set your link color */
-    cursor: pointer;              /* Pointer cursor on hover */
+    background: none;
+    /* Remove background color */
+    border: none;
+    /* Remove border */
+    padding: 0;
+    /* Remove extra padding */
+    margin: 0;
+    /* Remove extra margin */
+    font-size: 14px;
+    /* Set your font size */
+    color: var(--blub-blub);
+    /* Set your link color */
+    cursor: pointer;
+    /* Pointer cursor on hover */
     align-items: center;
     padding-top: 20px;
-    
-  }
+
+}
 
 #signup-btn:hover {
     text-decoration: underline;
     transition: color 0.3s ease;
 }
 
+
+/* Responsive adjustments for tablets and phones */
+
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+        /* Use most of the screen width */
+        padding: 50px 30px;
+        /* Less padding for smaller screens */
+    }
+
+    .login-container h1 {
+        font-size: 1.5rem;
+    }
+
+    #login-form button {
+        width: 100%;
+        /* Full width button on smaller screens */
+        padding: 12px;
+    }
+
+    .logo {
+        width: 100px;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 40px 20px;
+    }
+
+    .login-container h1 {
+        font-size: 1.3rem;
+    }
+
+    #login-form input {
+        font-size: 0.9rem;
+    }
+
+    #signup-btn {
+        font-size: 13px;
+    }
+}
