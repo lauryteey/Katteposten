@@ -57,8 +57,39 @@
       "Redaktør": "Jonnathan Cats",
       "excerpt": "Ran av en katt i Oslo sentrum",
       "content_file": "tekster/KattastiskRan.md",
-      "previewBilde": "static/video_og_images/image/kattastisk_ran.jpg",
-      "date_published": "2025-12-14"
+      "previewBilde": "static/video_og_images/image/kattastiskRan.jpg",
+      "date_published": "2025-04-23"
+    },
+    {
+      "id": 7,
+      "category": "helse",
+      "title": "De 10 beste prrrrrrositions for å sove",
+      "Redaktør": "Jonnathan Cats",
+      "excerpt": "Finn hvilken prrrrrrrositions du sover bedre med",
+      "content_file": "tekster/10positions.md",
+      "previewBilde": "static/video_og_images/image/de_beste_10_prrr_positions.jpg",
+      "date_published": "2025-04-23"
+    },
+    {
+      "id": 8,
+      "category": "helse",
+      "title": "Beste tips for tannhelse",
+      "Redaktør": "Jonnathan Cats",
+      "excerpt": "Er det egentlig god å spise så mye churu...?",
+      "content_file": "tekster/Tannhelse.md",
+      "previewBilde": "static/video_og_images/image/beste_tips_for_tannhelse.jpg",
+      "date_published": "2025-04-07"
+    }
+    ,
+    {
+      "id": 8,
+      "category": "livstil",
+      "title": "Beste meowfa for å unngå vondt i ryggen",
+      "Redaktør": "Jonnathan Cats",
+      "excerpt": "Hvor ofte tenker du på vondt i ryggen?",
+      "content_file": "tekster/besteSofa.md",
+      "previewBilde": "static/video_og_images/image/de_beste_sofaene_for_ryggen.jpg",
+      "date_published": "2025-04-07"
     }
   ]
 }

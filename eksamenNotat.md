@@ -26,6 +26,27 @@ Katteposten har egne ruter for innlogging og registrering. Brukere lagres i data
   	2. ````register.js```` validerer input før det sendes til serveren.
 
     3. ````slett_konto()````-funksjonen lar brukeren slette seg selv etter å ha bekreftet passord.
+    4. **Ofte stilte spørsmål** delen på **README**-filen
+
+# Lovverk og etikk 🧾
+
+I dette prosjektet har jeg vært bevisst på to viktige områder: **personvern** og **universell utforming**.
+
+## 📌 Personvern
+
+- Passord blir aldri lagret som klartekst i databasen. Jeg bruker `werkzeug.security` til å hashe passordene.
+- Brukerinformasjon (e-post og navn) håndteres trygt og deles ikke videre.
+- Jeg bruker `session` i Flask for å holde brukeren innlogget, men uten sensitive data som vises i nettleseren.
+- Ingen informasjon lastes inn før brukeren har logget inn.
+
+## 📌 Universell utforming
+
+- Fargekontraster er brukt bevisst for å gjøre tekst og knapper tydelige.
+- Sidene fungerer også på mobil og mindre skjermer.
+- Jeg har brukt `aria-label` på viktige knapper (som "hamburgermeny" og "logg inn") for skjermlesere.
+- Alt‑tekst er lagt til på logoen og viktige bilder.
+
+Dette viser at prosjektet prøver å følge både GDPR og krav til tilgjengelighet.
 
 ## ⚙️ Drift
 
@@ -99,8 +120,8 @@ Artikler vises med ````Flask```` ````(render_template)```` eller hentes med ````
 def er_gyldig_epost(epost):
     return "@" in epost and "." in epost
 ``````
-
-2. Telle artikler i en kategori:
+````python 
+# Telle artikler i en kategori:
 
 import os
 
@@ -108,12 +129,17 @@ def tell_artikler():
     path = "articles/nyheter"
     return len([f for f in os.listdir(path) if f.endswith(".md")])
 
-3. Filtrere artikler fra metadata:
+````
+````python
+# Filtrere artikler fra metadata:
 
 def hent_artikler_fra_kategori(metadata, kategori):
     return [art for art in metadata.get("articles", []) if art.get("category") == kategori]
 
-4. Legge til metadata i JSON:
+````
+
+````python
+# Legge til metadata i JSON:
 
 import json
 
@@ -124,6 +150,8 @@ def legg_til_metadata(ny_metadata):
         fil.seek(0)
         json.dump(data, fil, indent=4)
 
+````
+
 Dette forklarer jeg også under utvikling:
 
 
@@ -131,10 +159,14 @@ Dette forklarer jeg også under utvikling:
 
 - En struktur der **metadata til hver artikkel** lagres i en felles JSON-fil (`metadata.json`), og **innholdet** til hver artikkel lagres i en separat `.md`-fil.
 - Artiklene er organisert i **mapper etter kategori**.
+
 - Flask bruker `os` og `json` for å lese artikler og metadata fra filsystemet og sende dem til HTML-templates.
+
 - Artiklene vises i nettleseren ved hjelp av `render_template`, som sender inn riktig data til HTML-malene.
+
 - Jeg har laget egne Flask-ruter, for eksempel:
   - `/article/<category>/<article_id>` for å vise én artikkel
+
 - Bruk av **JavaScript (`fetch`)** kan brukes for å hente og vise artikler dynamisk på én enkelt HTML-side.
 
 ---
@@ -148,15 +180,34 @@ Dette forklarer jeg også under utvikling:
 
 ---
 
-## 🗄️ Databasestruktur
+🗄️ Databasestruktur
 
-**Tabell: `bruker`**
-- `brukerID` – Primærnøkkel
-- `epost`  
-- `passord`  
-- `fornavn`  
-- `etternavn`
+````sql
+-- Tabell bruker
 
+CREATE TABLE bruker (
+    brukerID INT AUTO_INCREMENT PRIMARY KEY,
+    e_post VARCHAR(255) NOT NULL UNIQUE,
+    passord VARCHAR(255) NOT NULL,
+    fornavn VARCHAR(100) NOT NULL,
+    etternavn VARCHAR(100) NOT NULL
+);
+
+``````
+
+````sql
+-- Tabell innloggingslogg
+
+CREATE TABLE innloggingslogg (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    brukerID INT,
+    tidspunkt DATETIME DEFAULT CURRENT_TIMESTAMP,
+    handling VARCHAR(10),
+    ip_adresse VARCHAR(45),
+    FOREIGN KEY (brukerID) REFERENCES bruker(brukerID)
+);
+
+````
 ---
 
 ## 🔐 Pålogging
