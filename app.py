@@ -132,6 +132,7 @@ def get_fornavn():
 
 # Article Helper Functions
 
+#Henter pathen til artikkelen basert på kategori og id
 def fetch_article_metadata(category, article_id):
     metadata_file = os.path.join(ARTICLES_DIR, "metadata", "metadata.json")
     if not os.path.exists(metadata_file):

@@ -540,3 +540,27 @@ def article_detail(category, article_id):
 - HTML/CSS struktur og JavaScript-funksjoner for dynamisk innhold
 
 - Hvordan man sikrer input og håndterer brukersesjoner
+
+🧪 I Katteposten:
+## Flask:
+
+Viser artikler når brukeren klikker på noe.
+
+Behandler innlogging og registrering.
+
+Henter og lagrer data i databasen.
+
+## Nginx (brukes mest i produksjon):
+
+Viser raskt bilder og stilark (CSS).
+
+Sender forespørsler videre til Flask for det som er dynamisk.
+
+-- 
+## Flask (bakgrunnsprogram – backend):
+Flask er et lite og enkelt web-rammeverk i Python.
+Det lar meg skrive kode som kjører på en server og gir svar til brukeren – for eksempel vise artikler, logge inn, eller lagre favoritter.
+
+## Nginx (nettserver – frontend):
+Nginx er en nettserver som står foran Flask.
+Den tar imot besøk fra brukere, gir raske svar når den kan (f.eks. bilder, CSS, JavaScript), og sender resten videre til Flask.
