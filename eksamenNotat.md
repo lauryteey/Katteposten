@@ -280,20 +280,30 @@ I ````viseNyheter.js```` (eller et nytt skript som lastes inn på artikkelsiden)
 
 ````javaScript
 function leggTilFavoritt(id, kategori, tittel) {
-  fetch('/leggtil_favoritt', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ article_id: id, category: kategori, title: tittel })
-  })
-  .then(res => res.json())
-  .then(data => alert(data.message))
-  .catch(err => alert("Noe gikk galt!"));
+    fetch('/leggtil_favoritt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ article_id: id, category: kategori, title: tittel })
+    })
+        .then(res => res.json())
+        .then(data => {
+            if (data.message) {
+                alert(data.message);
+            } else if (data.error) {
+                alert(data.error);
+            } else {
+                alert("Ukjent svar fra serveren.");
+            }
+        })
+        .catch(err => alert("Noe gikk galt!"));
 }
+
 ````
 
 4. Lag route i Flask i ````app.py````:
 
 ```` python
+# Flask-rute for å legge til favoritt
 @app.route('/leggtil_favoritt', methods=['POST'])
 def leggtil_favoritt():
     if 'brukerID' not in session:
@@ -314,7 +324,8 @@ def leggtil_favoritt():
 Endre Flask-ruten for ````@app.route('/minside')```` slik at den sender med favoritter:
 
 ```` python
-@app.route('/minside', methods=['GET'])
+#Route til min side, slette kontoen eller logg av
+@app.route('/minside', methods=['GET', 'POST'])
 def minside():
     if 'brukerID' not in session:
         return redirect('/log_in')

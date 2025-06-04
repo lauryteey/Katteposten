@@ -1,6 +1,13 @@
 # 🧪 Feilsøking og problemløsning 🔧
 Underveis i prosjektet støtte jeg på flere utfordringer som jeg lærte mye av. Her er en oversikt over hva som gikk galt, hvorfor det skjedde, og hvordan jeg løste det.
 
+## ❌ feilsøking ved 404
+Jeg fikk en 404-feil da jeg prøvde å hente en artikkel. Jeg fant ut at Flask bygger filstien med ARTICLES_DIR + content_file, så det var viktig at content_file i metadata.json pekte til riktig undermappe – i mitt tilfelle tekster/.
+Eksempel:
+````json
+"content_file": "tekster/forsideNyhet.md"
+````
+
 ## ❌ SVG-logoen vises ikke
 Problem: Kun logoens alt‑tekst ble vist i stedet for selve bildet.
 Årsak: Jeg brukte feil path og hadde glemt .svg på slutten.
