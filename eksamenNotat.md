@@ -352,6 +352,39 @@ def minside():
 </ul>
 ````
 
+7. Oppdatere slett def, for å slette alle info i kontoen
+
+````python
+
+@app.route('/slettkonto', methods=['POST'])
+def slett_konto():
+    if 'brukerID' not in session:
+        return redirect('/log_in')
+
+    bruker_id = session['brukerID']
+    passord = request.form['passord']
+
+    cursor.execute("SELECT passord FROM bruker WHERE brukerID = %s", (bruker_id,))
+    user = cursor.fetchone()
+
+    if user and check_password_hash(user['passord'], passord):
+        # Slett alle relaterte rader først
+        cursor.execute("DELETE FROM favoritter WHERE brukerID = %s", (bruker_id,))
+        cursor.execute("DELETE FROM innloggingslogg WHERE brukerID = %s", (bruker_id,))
+        cursor.execute("DELETE FROM bruker WHERE brukerID = %s", (bruker_id,))
+        conn.commit()
+        session.clear()
+        return render_template('sletteKonto.html')  # bekreftelse side
+
+    else:
+        return render_template(
+            'minside.html',
+            fornavn=get_fornavn(),
+            feilmelding="Feil passord. Kontoen ble ikke slettet."
+        ), 401
+
+````
+
 🎯 Denne funksjonen viser at jeg kan:
 
 Bruke session (brukerstøtte)
