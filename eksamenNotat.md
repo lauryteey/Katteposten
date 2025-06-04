@@ -556,7 +556,8 @@ Viser raskt bilder og stilark (CSS).
 
 Sender forespørsler videre til Flask for det som er dynamisk.
 
--- 
+--- 
+
 ## Flask (bakgrunnsprogram – backend):
 Flask er et lite og enkelt web-rammeverk i Python.
 Det lar meg skrive kode som kjører på en server og gir svar til brukeren – for eksempel vise artikler, logge inn, eller lagre favoritter.
