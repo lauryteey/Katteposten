@@ -1,6 +1,6 @@
 # Katteposten 🐾
 
-**Katteposten** er en digital nyhetsplattform laget for katteelskere. Her kan brukere logge inn, lese spennende artikler om katteliv, kattekrim, kattehelse og mye mer. 
+**Katteposten** er en demo av det smo kunne være en digital nyhetsplattform laget for katteelskere. Her kan brukere logge inn, lese spennende artikler om katteliv, kattekrim, kattehelse og mye mer. 
 
 ## ✨ Hva prosjektet gjør
 
